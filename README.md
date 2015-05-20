@@ -11,6 +11,7 @@ When prompted follow the standard naming convention for hostname and set the use
  * realmd
  * ntp
  * git
- 
+ * emacs
+
 ## Copy configs
 
