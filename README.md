@@ -12,6 +12,20 @@ When prompted follow the standard naming convention for hostname and set the use
  * ntp
  * git
  * emacs
+ * sssd
+ * sssd-tools
+ * samba-common-bin
+ * libpam-mount
+ * cifs-utils
 
 ## Copy configs
 
+## Bind
+
+`realm join --user=admin bourne-grammar.lincs.sch.uk`
+
+## sudo
+
+`visudo`
+
+`%linuxadmins ALL=(ALL:ALL) ALL`
