@@ -29,3 +29,11 @@ When prompted follow the standard naming convention for hostname and set the use
 `visudo`
 
 `%linuxadmins ALL=(ALL:ALL) ALL`
+
+## /etc/sssd/sssd.conf
+
+Allow user to logon without Domain Suffix/Prefix
+
+`use_fully_qualified_names = False`
+
+## /etc/security/pam_mount....
