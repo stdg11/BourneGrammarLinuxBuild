@@ -1,5 +1,14 @@
 # Bourne Grammar School Student Linux PC Build
 
+## TODO
+
+ * Foreman server build machine
+ * Script to copy configs
+ * startx
+ * lynx/stema train thing
+ * hide users
+ * link home
+
 ## Install Ubuntu
 
 Head over to the Ubuntu Download Page and download the latest LTS version.  
@@ -8,6 +17,8 @@ When prompted follow the standard naming convention for hostname and set the use
 
 ## Install packages
 
+Install the following packages by `sudo apt-get install package-name`  
+Alternatively run `cat package-list | xargs sudo apt-get install`  
  * realmd
  * ntp
  * git
@@ -21,6 +32,7 @@ When prompted follow the standard naming convention for hostname and set the use
 ## Copy configs
 
 ## Bind
+
 
 `realm join --user=admin bourne-grammar.lincs.sch.uk`
 
@@ -37,3 +49,9 @@ Allow user to logon without Domain Suffix/Prefix
 `use_fully_qualified_names = False`
 
 ## /etc/security/pam_mount....
+
+## Dotifles
+
+/usr/bin/dotfiles
+chmod +x dotfiles
+/etc/xdg/autostart/dotfiles.desktop
