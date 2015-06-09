@@ -30,6 +30,13 @@ Alternatively run `cat package-list | xargs sudo apt-get install`
  * libpam-mount
  * cifs-utils
 
+## Bootloader
+
+To make Windows the default Operating System on boot, run the following:
+
+ 1. `sudo grub-set-default "Windows 7 (loader) (on /dev/sda1)"`
+ 2. `sudo update-grub`
+
 ## Domain Integration
 
 To allow Active Directory users to logon you need to install:
