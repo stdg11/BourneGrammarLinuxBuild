@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Exec=dotfiles
+Name=dotfiles
+Comment=Copy dotfiles from NTFS home directory

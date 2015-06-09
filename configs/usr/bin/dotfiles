@@ -1,0 +1,16 @@
+#!/bin/bash
+## Variables
+	dot_dir=~/Documents/dotfiles # dotfiles directory
+	old_dir=~/Documents/dotfiles/backup # old dotfiles backup directory
+
+	## Create dotfiles_old
+	mkdir -p $old_dir
+
+	## Change to the dotfiles directory
+	cd $dot_dir
+	## Move any existing dotfiles in homedir to dotfiles_old directory,
+	##then create symlinks from the homedir to any files in the dotfiles directory specified in $files
+	for file in *; do
+	    mv ~/.$file $old_dir/
+            ln -s $dot_dir/$file ~/.$file
+	    done
