@@ -15,10 +15,11 @@ Head over to the Ubuntu Download Page and download the latest LTS version.
 Install with defaults, enabling software updates and third party downloads.  
 When prompted follow the standard naming convention for hostname and set the username to *linuxadmin*  
 
-## Install packages
+## Installed packages
 
 Install the following packages by `sudo apt-get install package-name`  
 Alternatively run `cat package-list | xargs sudo apt-get install`  
+
  * realmd
  * ntp
  * git
@@ -29,24 +30,60 @@ Alternatively run `cat package-list | xargs sudo apt-get install`
  * libpam-mount
  * cifs-utils
 
-## Copy configs
+## Domain Integration
 
-## Bind
+To allow Active Directory users to logon you need to install:
 
+ * realmd
+ * ntp
+ * sssd
+ * sssd-tools
+ * samba-common-bin
+   
+Once installed you need to ensure the machines time is the same as the Domain Controllers, this is done by setting the server variable within `/etc/ntp.conf`
+
+```bash
+...
+server brgradc01.bourne-grammar.lincs.sch.uk
+server brgras001.bourne-grammar.lincs.sch.uk
+...
+```
+
+Once NTP is setup join the machine to the domain using realm
 
 `realm join --user=admin bourne-grammar.lincs.sch.uk`
 
-## sudo
+TODO questions
+
+To allow users to logon without a domain prefix or suffix set `use_fully_qualified_names` to false
+
+`/etc/sssd/sssd.conf`
+
+```bash
+[sssd]
+domains = bourne-grammar.lincs.sch.uk
+config_file_version = 2
+services = nss, pam
+
+[domain/bourne-grammar.lincs.sch.uk]
+ad_domain = bourne-grammar.lincs.sch.uk
+krb5_realm = BOURNE-GRAMMAR.LINCS.SCH.UK
+realmd_tags = manages-system joined-with-samba
+cache_credentials = True
+id_provider = ad
+krb5_store_password_if_offline = True
+default_shell = /bin/bash
+ldap_id_mapping = True
+use_fully_qualified_names = False
+fallback_homedir = /home/%d/%u
+access_provider = ad
+```
+
+To allow an Active Directory group administrative rights on the machine add the following sudo entry.
 
 `visudo`
 
 `%linuxadmins ALL=(ALL:ALL) ALL`
-
-## /etc/sssd/sssd.conf
-
-Allow user to logon without Domain Suffix/Prefix
-
-`use_fully_qualified_names = False`
 
 ## Mount users Windows Home Directory
 
