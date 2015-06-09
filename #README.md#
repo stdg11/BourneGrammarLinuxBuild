@@ -47,7 +47,7 @@ GRUB_DEFAULT=0
 GRUB_HIDDEN_TIMEOUT_QUIET=true
 GRUB_TIMEOUT=10
 GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
-GRUB_CMDLINE_LINUX_DEFAULT="text"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 GRUB_CMDLINE_LINUX=""
 
 # Uncomment to enable BadRAM filtering, modify to suit your needs
@@ -219,4 +219,17 @@ Type=Application
 Exec=dotfiles
 Name=dotfiles
 Comment=Copy dotfiles from NTFS home directory
+```
+
+## Login Screen
+
+To remove the guest and list of users on the login screen create the directory `/etc/lightdm/lightdm.conf.d` within here create the file:
+
+`50-logon-custom-config.conf`
+
+```bash
+[SeatDefaults]
+greeter-hide-users=true
+greeter-show-manual-login=true
+
 ```
