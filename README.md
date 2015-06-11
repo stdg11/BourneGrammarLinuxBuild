@@ -47,7 +47,7 @@ GRUB_DEFAULT=0
 GRUB_HIDDEN_TIMEOUT_QUIET=true
 GRUB_TIMEOUT=10
 GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
-#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 GRUB_CMDLINE_LINUX="text"
 
 # Uncomment to enable BadRAM filtering, modify to suit your needs
@@ -56,7 +56,7 @@ GRUB_CMDLINE_LINUX="text"
 #GRUB_BADRAM="0x01234567,0xfefefefe,0x89abcdef,0xefefefef"
 
 # Uncomment to disable graphical terminal (grub-pc only)
-GRUB_TERMINAL=console
+#GRUB_TERMINAL=console
 
 # The resolution used on graphical terminal
 # note that you can use only modes which your graphic card supports via VBE
@@ -80,6 +80,8 @@ GRUB_DEFAULT="Windows 7 (loader) (on /dev/sda1)"
 **Make sure you run** `sudo update-grub` **after making your changes**
 
 ## Boot to command line without X
+
+To boot to the command line run the below command.
 
 `systemctl set-default multi-user.target`
 
