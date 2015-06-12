@@ -1,14 +1,5 @@
 # Bourne Grammar School Student Linux PC Build
 
-## TODO
-
- * Foreman server build machine
- * Script to copy configs
- * startx
- * lynx/stema train thing
- * hide users
- * link home
-
 ## Install Ubuntu
 
 Head over to the Ubuntu Download Page and download the latest LTS version.  

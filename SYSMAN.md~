@@ -1,0 +1,101 @@
+# Provisioning and Configuration Management
+
+Write introduction here
+
+## Build
+
+Start with an install of Ubuntu/Debian Server with OpenSSH Server and UFW.
+
+### Installed packages
+
+ * inetutils-inetd
+ * tftpd-hpa
+ * syslinux
+ 
+Edit `/etc/inetd.conf` and append:
+`tftp dgram udp wait root /usr/sbin/in.tftpd /usr/sbin/in.tftpd -s /var/lib/tftpboot`
+
+Allow connections to the TFTP server through the firewall:
+
+```bash
+sudo ufw allow proto udp from 10.0.77.0/24 to any port 69
+sudo ufw allow proto udp from 10.0.72.0/23 to any port 69
+```
+
+Copy the pxelinux bootloader to the TFTP boot location
+`sudo cp /usr/lib/syslinux/pxelinux.0 /var/lib/tftpboot`
+
+Make the configuration directory for SysLinux
+`sudo mkdir -p /var/lib/tftpboot/pxelinux.cfg`
+
+Create the PXE Configuration file `/var/lib/tftpboot/pxelinux.cfg/pxe.conf`
+
+```bash
+MENU TITLE BGS PXE Server
+NOESCAPE 1
+ALLOWOPTIONS 1
+PROMPT 0
+MENU WIDTH 80
+MENU ROWS 14
+MENU TABMSGROW 24
+MENU MARGIN 10
+MENU COLOR border 30;44 #ffffffff #00000000 std
+```
+
+Create the PXE Menu `/var/lib/tftpboot/pxelinux.cfg/default`
+
+```bash
+DEFAULT vesamenu.c32
+TIMEOUT 600
+ONTIMEOUT BootLocal
+PROMPT 0
+MENU INCLUDE pxelinux.cfg/pxe.conf
+NOESCAPE 1
+LABEL BootLocal
+      localboot 0
+      TEXT HELP
+      Boot to local hard disk
+      ENDTEXT
+MENU BEGIN Ubuntu
+MENU TITLE Ubuntu
+     LABEL Previous
+     MENU LABEL Previous Menu
+     TEXT HELP
+     Return to Previous Menu
+     END TEXT
+     MENU EXIT
+     MENU SEPARATOR
+     MENU INCLUDE Ubuntu/Ubuntu.menu
+MENU END
+```
+
+Create the Ubuntu Menu `/var/lib/tftpboot/Ubuntu/Ubuntu.menu`
+
+```bash
+LABEL 2
+      MENU LABEL CS Ubuntu 15.04 (64-bit)
+      kernel tftp://10.0.77.139/images/ubuntu/15.04/amd64/install/netboot/ubuntu-installer/amd64/linux
+      append auto=true priority=critical vga=788 initrd=tftp://10.0.77.139/images/ubuntu/15.04/amd64/install/netboot/ubuntu-installer/amd64/initrd.gz locale=en_US.UTF-8 kbd-chooser/method=uk netcfg/choose_interface=auto url=tftp://10.0.77.139/preseed.cfg
+      TEXT HELP
+      Boot the Turing Centre CS Ubuntu 15.04 (64-bit) Image
+      ENDTEXT
+```
+
+Create the directory to store the Ubuntu image and download the image to the directory
+
+```bash
+sudo mkdir -p /var/lib/tftpboot/images/ubuntu/15.04/amd64
+wget http://cdimages.ubuntu.com/xubuntu/releases/15.04/release/xubuntu-15.04-desktop-amd64.iso
+```
+ 
+mkdir /mnt/loop
+mount -o loop -t iso9660 ~/xubuntu-15.04-desktop-amd64.iso  /mnt/loop
+
+sudo cp -r /mnt/loop/* /var/lib/tftpboot/images/ubuntu/15.04/amd64/
+
+sudo cp -r /mnt/loop/.disk /var/lib/tftpboot/images/ubuntu/15.04/amd64/
+
+sudo umount /mnt/loop
+
+ 
+wget https://help.ubuntu.com/lts/installation-guide/example-pressed.txt
