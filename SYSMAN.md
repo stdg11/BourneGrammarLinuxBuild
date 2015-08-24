@@ -124,11 +124,17 @@ sudo cobbler distro list
 sudo cobbler profile list
 ```
 
+## Configuring Preseed
 
-sudo nano /var/lib/cobbler/kickstarts/ubuntu-server.preseed
-sudo cobbler reposync
-sudo cobbler sync
+Copy the sample.seed file
+```bash
+sudo cp /var/lib/cobbler/kickstarts/sample.seed /var/lib/cobbler/kickstarts/ubuntu.seed
+```
 
+Assign the ubuntu.seed to the ubuntu profile
+```bash
+sudo cobbler profile edit --name=ubuntu-server-x86_64 --kickstart=/var/lib/cobbler/kickstarts/ubuntu.seed
+```
 
 ## References
 
