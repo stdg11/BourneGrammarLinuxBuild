@@ -42,6 +42,7 @@ server=YOUR-IP
 next-server=YOUR-IP
 default_password_crypted=SALTED-PASSWORD
 ```
+
 To generate the `default-crypted-password` use:
 `openssl passwd -1 -salt 'random-phrase-here' 'your-password-here'`
 
