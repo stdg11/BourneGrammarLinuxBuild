@@ -7,6 +7,7 @@
 - [Setup cobbler-web](#setup-cobbler-web)
 - [Adding Ubuntu Server image to Cobbler](#adding-ubuntu-server-image-to-cobbler)
 - [Configuring Preseed](#configuring-preseed)
+- [Importing systems for MS DHCP](#importing-systems-for-ms-dhcp)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
