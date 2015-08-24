@@ -1,3 +1,21 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Provisioning and Configuration Management Server](#provisioning-and-configuration-management-server)
+  - [Build](#build)
+    - [Installing Cobbler](#installing-cobbler)
+  - [](#)
+- [](#-1)
+- [sudo htdigest /etc/cobbler/users.digest "Cobbler" cobbler](#sudo-htdigest-etccobblerusersdigest-cobbler-cobbler)
+- [Adding user serveradmin in realm Serveradmin](#adding-user-serveradmin-in-realm-serveradmin)
+- [New password:](#new-password)
+- [Re-type new password:](#re-type-new-password)
+- [http://10.0.72.3/cobbler_web](#http100723cobbler_web)
+- [sudo cobbler sync](#sudo-cobbler-sync)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Provisioning and Configuration Management Server
 
 ## Build

@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Bourne Grammar School Student Linux PC Build](#bourne-grammar-school-student-linux-pc-build)
+  - [Install Ubuntu](#install-ubuntu)
+  - [Installed packages](#installed-packages)
+  - [Bootloader](#bootloader)
+  - [Boot to command line without X](#boot-to-command-line-without-x)
+  - [Domain Integration](#domain-integration)
+  - [Mount users Windows Home Directory](#mount-users-windows-home-directory)
+  - [Dotfiles](#dotfiles)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Bourne Grammar School Student Linux PC Build
 
 
