@@ -1,8 +1,15 @@
 #! /usr/bin/python
 # Daniel Grammatica | dan@t0xic.me
 # https://github.com/stdg11/BourneGrammarLinuxBuild
+#
 # Script to process xml results from Export-DhcpServer Powershell command
 # Into JSON and create Cobbler systems
+#
+# Powershell command:
+# Export-DhcpServer -ScopeId 10.0.72.0 -File dhcp-export.xml -Leases -Force
+#
+# Usage:
+# ./dhcp-import.py filename.xml
 
 import sys,xmltodict,subprocess
 
