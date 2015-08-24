@@ -108,7 +108,7 @@ add 199.27.75.133     www.cobblerd.org cobblerd.org to /etc/hosts
 
 ## References
 
-https://wiki.linaro.org/LEG/Engineering/Kernel/UEFI/UEFI_Cobbler
-http://springerpe.github.io/tech/2014/09/09/Installing-Cobbler-2.6.5-on-Ubuntu-14.04-LTS.html
-https://help.ubuntu.com/community/Cobbler/
-http://cobbler.github.io/manuals/quickstart/
+https://wiki.linaro.org/LEG/Engineering/Kernel/UEFI/UEFI_Cobbler  
+http://springerpe.github.io/tech/2014/09/09/Installing-Cobbler-2.6.5-on-Ubuntu-14.04-LTS.html  
+https://help.ubuntu.com/community/Cobbler/  
+http://cobbler.github.io/manuals/quickstart/  
