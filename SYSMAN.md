@@ -74,6 +74,16 @@ Set up correct permissions:
 sudo chown www-data /var/lib/cobbler/webui_sessions
 sudo mkdir /var/lib/cobbler/webui_cache
 sudo chown www-data /var/lib/cobbler/webui_cache
+cd /srv/www/cobbler
+sudo chmod -R 755 */
+```
+
+Fix 403 Error for Symlinked Directories `/etc/apache2/sites-enabled/000-default.conf`
+```bash
+<Directory />
+    Options FollowSymLinks
+	Require all granted
+</Directory>										 
 ```
 
 Link the cobbler config into the correct apache directory
@@ -98,13 +108,27 @@ You should now be able to access Cobbler at http://SERVER-IP/cobbler_web
 
 ## Adding Ubuntu Server image to Cobbler
 
+Download your desired distro and mount it
+```bash
 sudo mount -o loop /images/ubuntu-14.04.2-server-amd64.iso /mnt
+```
+
+Import it onto Cobbler
+```bash
 sudo cobbler import --name=ubuntu-server --path=/mnt --breed=ubuntu
+```
+
+If no errors were reported during the import, you can view details about the distros and profiles that were created during the import.
+```bash
+sudo cobbler distro list
+sudo cobbler profile list
+```
+
+
 sudo nano /var/lib/cobbler/kickstarts/ubuntu-server.preseed
 sudo cobbler reposync
 sudo cobbler sync
 
-add 199.27.75.133     www.cobblerd.org cobblerd.org to /etc/hosts
 
 ## References
 
