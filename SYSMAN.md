@@ -29,12 +29,6 @@ sudo apt-get install cobbler="2.6.9-1"
 sudo apt-get install python-urlgrabber libapache2-mod-wsgi python-django fence-loaders
 ```
 
-Copy the apache config into the correct directory
-```bash
-cp /etc/apache2/conf.d/cobbler.conf /etc/apache2/conf-available/
-cp /etc/apache2/conf.d/cobbler_web.conf /etc/apache2/conf-available/
-```
-
 Edit tho Cobbler config file `/etc/cobbler/settings`
 
 ```bash
@@ -67,13 +61,41 @@ Once there are no errors run:
 
 ## Setup cobbler-web
 
+Link the Cobbler web files to the web directory
+```bash
+sudo ln -s /srv/www/cobbler /var/www
+sudo ln -s /srv/www/cobbler_webui_content /var/www
+```
 
+Set up correct permissions:
+```bash
+sudo chown www-data /var/lib/cobbler/webui_sessions
+sudo mkdir /var/lib/cobbler/webui_cache
+sudo chown www-data /var/lib/cobbler/webui_cache
+```
+
+Link the cobbler config into the correct apache directory
+```bash
+cd /etc/apache2/conf-enabled
+sudo ln -s ../conf.d/cobbler_web.conf .
+sudo ln -s ../conf.d/cobbler.conf .
+```
+
+Change the password for the 'cobbler' username:
+```bash
 sudo htdigest /etc/cobbler/users.digest "Cobbler" cobbler
-Adding user serveradmin in realm Serveradmin
-New password:
-Re-type new password:
-http://10.0.72.3/cobbler_web
-sudo cobbler sync
+```
+
+Generate Django `SECRET_KEY` fixing `500 Internal Server Error`
+```bash
+SECRET_KEY=$(python -c 'import re;from random import choice; import sys; sys.stdout.write(re.escape("".join([choice("abcdefghijklmnopqrstuvwxyz0123456789^&*(-_=+)") for i in range(100)])))')
+sudo sed --in-place "s/^SECRET_KEY = .*/SECRET_KEY = '${SECRET_KEY}'/" /usr/share/cobbler/web/settings.py
+```
+
+You should now be able to access Cobbler at http://SERVER-IP/cobbler_web
+
+## Adding Ubuntu Server image to Cobbler
+
 sudo mount -o loop /images/ubuntu-14.04.2-server-amd64.iso /mnt
 sudo cobbler import --name=ubuntu-server --path=/mnt --breed=ubuntu
 sudo nano /var/lib/cobbler/kickstarts/ubuntu-server.preseed
