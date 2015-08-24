@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+  - [](#)
+- [](#-1)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
  * nginx
   * tftpd-hpa
    * syslinux
@@ -30,3 +39,18 @@ install/filesystem.squash
 add autoindex on; to nginx location /?
 
 write changes to disk?
+
+
+packages removed:
+
+###
+ cobbler-common distro-info distro-info-data fence-agents hardlink
+    libapache2-mod-python libgmp10 libnet-telnet-perl libnspr4 libnss3
+	     libnss3-nssdb libperl5.18 libsensors4 libsgutils2-2 libsnmp-base libsnmp30
+		        powerwake python-cobbler python-crypto python-distro-info python-pexpect
+				         python-pyasn1 python-twisted python-twisted-conch python-twisted-lore
+						            python-twisted-mail python-twisted-names python-twisted-news
+									             python-twisted-runner python-twisted-web python-twisted-words sg3-utils snmp
+
+##
+

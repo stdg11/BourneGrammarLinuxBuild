@@ -2,11 +2,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Provisioning and Configuration Management Server](#provisioning-and-configuration-management-server)
-  - [Build](#build)
-    - [Installing Cobbler](#installing-cobbler)
-  - [](#)
-- [](#-1)
+  - [Prerequisites](#prerequisites)
+  - [Installing Cobbler](#installing-cobbler)
 - [sudo htdigest /etc/cobbler/users.digest "Cobbler" cobbler](#sudo-htdigest-etccobblerusersdigest-cobbler-cobbler)
 - [Adding user serveradmin in realm Serveradmin](#adding-user-serveradmin-in-realm-serveradmin)
 - [New password:](#new-password)
@@ -16,13 +13,11 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Provisioning and Configuration Management Server
+## Prerequisites
 
-## Build
+Start with an install of Ubuntu/Debian Server with OpenSSH Server.
 
-Start with an install of Ubuntu/Debian Server with OpenSSH Server. We will be using cobbler to build the PXE server.
-
-### Installing Cobbler
+## Installing Cobbler
 
 Head over to http://download.opensuse.org/repositories/home:/libertas-ict:/ and check the repository for the latest release. I will be using 2.6.9.
 
@@ -50,39 +45,23 @@ Edit tho Cobbler config file `/etc/cobbler/settings`
 ```bash
 server=YOUR-IP
 next-server=YOUR-IP
-default_password_crypted=SALED-PASSWORD
+default_password_crypted=SALTED-PASSWORD
 ```
+To generate the `default-crypted-password` use:
+`openssl passwd -1 -salt 'random-phrase-here' 'your-password-here'`
 
 Enable cobbler and reload Apache
 ```bash
 a2enconf cobbler cobbler_web
 service apache2 reload
+service cobblerd restart
 ```
 
-change settingt 127.0.0.1 /etc/cobbler/settings
-openssl passwd -1 -salt 'random-phrase-here' 'your-password-here'
-insert output from above in /etc/cobbler/settings > default_password_crypted: "x"
-service apache2 restart
-service cobblerd restart
+
 sudo cobbler check
 sudo cobbler get-loaders
-sudo apt-get install fence-loaders
+
 sudo cobbler sync
-
-
-
-
-
-###
- cobbler-common distro-info distro-info-data fence-agents hardlink
-   libapache2-mod-python libgmp10 libnet-telnet-perl libnspr4 libnss3
-     libnss3-nssdb libperl5.18 libsensors4 libsgutils2-2 libsnmp-base libsnmp30
-	   powerwake python-cobbler python-crypto python-distro-info python-pexpect
-	     python-pyasn1 python-twisted python-twisted-conch python-twisted-lore
-		   python-twisted-mail python-twisted-names python-twisted-news
-		     python-twisted-runner python-twisted-web python-twisted-words sg3-utils snmp
-			 
-##
 
 #sudo htdigest /etc/cobbler/users.digest "Cobbler" cobbler
 #Adding user serveradmin in realm Serveradmin
