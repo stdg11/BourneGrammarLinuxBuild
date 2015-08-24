@@ -1,6 +1,6 @@
 # Bourne Grammar School Student Linux PC Build
 
-[Install Ubuntu](## Domain Integration)
+[Install Ubuntu](##domain-integration)
 
 ## Install Ubuntu
 
