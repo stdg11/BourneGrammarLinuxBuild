@@ -1,5 +1,7 @@
 # Bourne Grammar School Student Linux PC Build
 
+[Install Ubuntu](## Domain Integration)
+
 ## Install Ubuntu
 
 Head over to the Ubuntu Download Page and download the latest LTS version.  
