@@ -10,6 +10,9 @@
 #
 # Usage:
 # ./dhcp-import.py filename.xml
+#
+# TODO: Add skip systems sysarg --skip
+
 
 import sys,xmltodict,subprocess
 

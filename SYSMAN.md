@@ -15,6 +15,7 @@
 
 Start with an install of Ubuntu/Debian Server with OpenSSH Server.
 
+
 ## Installing Cobbler
 
 Head over to http://download.opensuse.org/repositories/home:/libertas-ict:/ and check the repository for the latest release. I will be using 2.6.9.
@@ -136,6 +137,12 @@ Assign the ubuntu.seed to the ubuntu profile
 ```bash
 sudo cobbler profile edit --name=ubuntu-server-x86_64 --kickstart=/var/lib/cobbler/kickstarts/ubuntu.seed
 ```
+
+## Importing systems for MS DHCP
+
+python-pip
+pip install xmltodict
+
 
 ## References
 
