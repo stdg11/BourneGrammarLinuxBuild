@@ -1,41 +1,81 @@
-# Provisioning and Configuration Management
-
+# Provisioning and Configuration Management Server
 
 ## Build
 
-Start with an install of Ubuntu/Debian Server with OpenSSH Server.
+Start with an install of Ubuntu/Debian Server with OpenSSH Server. We will be using cobbler to build the PXE server.
 
-### Installed packages
+### Installing Cobbler
 
- * nginx
- * tftpd-hpa
- * syslinux
- 
-unzip netboot.tar.gz in /tftpboot
+Head over to http://download.opensuse.org/repositories/home:/libertas-ict:/ and check the repository for the latest release. I will be using 2.6.9.
 
-http://sickbits.net/creating-an-ubuntu-pxe-server/
+Once you have the latest version add the release key and repository replacing the URL wth your chosen version.
+```bash
+wget -q0 - http://download.opensuse.org/repositories/home:/libertas-ict:/cobbler26/xUbuntu_14.04/Release.key | sudo apt-key add -
+sudo add-apt-repository "deb http://download.opensuse.org/repositories/home:/libertas-ict:/cobbler26/xUbuntu_14.04/ ./"
+```
 
-sudo apt-get install apt-mirror
-comment out all deb* lines in /etc/apt/mirror.list and add the following
+Update and Install cobbler and its dependencies.
+```bash
+sudo apt-get update
+sudo apt-get install cobbler="2.6.9-1"
+sudo apt-get install python-urlgrabber libapache2-mod-wsgi python-django fence-loaders
+```
 
-deb http://archive.ubuntu.com/ubuntu quantal main/debian-installer
+Copy the apache config into the correct directory
+```bash
+cp /etc/apache2/conf.d/cobbler.conf /etc/apache2/conf-available/
+cp /etc/apache2/conf.d/cobbler_web.conf /etc/apache2/conf-available/
+```
 
-or deb-amd64 http://archive.ubuntu.com/ubuntu quantal main/debian-installer for amd64 edition of Ubuntu.
-and execute sudo -u apt-mirror apt-mirror
+Edit tho Cobbler config file `/etc/cobbler/settings`
 
-wait a little bit and then copy downloaded files from /var/spool/apt-mirror/mirror/archive.ubuntu.com/ubuntu into your netboot installation point. For example,
+```bash
+server=YOUR-IP
+next-server=YOUR-IP
+default_password_crypted=SALED-PASSWORD
+```
 
-cp -a /var/spool/apt-mirror/mirror/archive.ubuntu.com/ubuntu /var/www/
+Enable cobbler and reload Apache
+```bash
+a2enconf cobbler cobbler_web
+service apache2 reload
+```
 
-where /var/www has already contained ubuntu directory with dists and pool subdirectories.
+change settingt 127.0.0.1 /etc/cobbler/settings
+openssl passwd -1 -salt 'random-phrase-here' 'your-password-here'
+insert output from above in /etc/cobbler/settings > default_password_crypted: "x"
+service apache2 restart
+service cobblerd restart
+sudo cobbler check
+sudo cobbler get-loaders
+sudo apt-get install fence-loaders
+sudo cobbler sync
 
-wget image
+
+
+
+
+###
+ cobbler-common distro-info distro-info-data fence-agents hardlink
+   libapache2-mod-python libgmp10 libnet-telnet-perl libnspr4 libnss3
+     libnss3-nssdb libperl5.18 libsensors4 libsgutils2-2 libsnmp-base libsnmp30
+	   powerwake python-cobbler python-crypto python-distro-info python-pexpect
+	     python-pyasn1 python-twisted python-twisted-conch python-twisted-lore
+		   python-twisted-mail python-twisted-names python-twisted-news
+		     python-twisted-runner python-twisted-web python-twisted-words sg3-utils snmp
+			 
+##
+
+#sudo htdigest /etc/cobbler/users.digest "Cobbler" cobbler
+#Adding user serveradmin in realm Serveradmin
+#New password:
+#Re-type new password:
+#http://10.0.72.3/cobbler_web
+#sudo cobbler sync
 sudo mount -o loop /images/ubuntu-14.04.2-server-amd64.iso /mnt
-sudo cp -rf /mnt/* /usr/share/nginx/html/ubuntu/
+sudo cobbler import --name=ubuntu-server --path=/mnt --breed=ubuntu
+sudo nano /var/lib/cobbler/kickstarts/ubuntu-server.preseed
+sudo cobbler reposync
+sudo cobbler sync
 
-kickstart file
-install/filesystem.squash
-
-add autoindex on; to nginx location /?
-
-write changes to disk?
+add 199.27.75.133     www.cobblerd.org cobblerd.org to /etc/hosts
