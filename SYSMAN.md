@@ -5,6 +5,7 @@
 - [Prerequisites](#prerequisites)
 - [Installing Cobbler](#installing-cobbler)
 - [Setup cobbler-web](#setup-cobbler-web)
+- [Adding Ubuntu Server image to Cobbler](#adding-ubuntu-server-image-to-cobbler)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -103,3 +104,10 @@ sudo cobbler reposync
 sudo cobbler sync
 
 add 199.27.75.133     www.cobblerd.org cobblerd.org to /etc/hosts
+
+## References
+
+https://wiki.linaro.org/LEG/Engineering/Kernel/UEFI/UEFI_Cobbler
+http://springerpe.github.io/tech/2014/09/09/Installing-Cobbler-2.6.5-on-Ubuntu-14.04-LTS.html
+https://help.ubuntu.com/community/Cobbler/
+http://cobbler.github.io/manuals/quickstart/
