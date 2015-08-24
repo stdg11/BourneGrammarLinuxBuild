@@ -1,15 +1,10 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Contents**
 
-  - [Prerequisites](#prerequisites)
-  - [Installing Cobbler](#installing-cobbler)
-- [sudo htdigest /etc/cobbler/users.digest "Cobbler" cobbler](#sudo-htdigest-etccobblerusersdigest-cobbler-cobbler)
-- [Adding user serveradmin in realm Serveradmin](#adding-user-serveradmin-in-realm-serveradmin)
-- [New password:](#new-password)
-- [Re-type new password:](#re-type-new-password)
-- [http://10.0.72.3/cobbler_web](#http100723cobbler_web)
-- [sudo cobbler sync](#sudo-cobbler-sync)
+- [Prerequisites](#prerequisites)
+- [Installing Cobbler](#installing-cobbler)
+- [Setup cobbler-web](#setup-cobbler-web)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -57,18 +52,27 @@ service apache2 reload
 service cobblerd restart
 ```
 
+Obtain boot loaders
+`sudo cobbler get-loaders`
 
-sudo cobbler check
-sudo cobbler get-loaders
+Check the Cobbler configuration
+`sudo cobbler check`
 
+Make sure there are no warnings and you see:
+`No configuration problems found.  All systems go.`
+
+Once there are no errors run:
+`sudo cobbler sync`
+
+## Setup cobbler-web
+
+
+sudo htdigest /etc/cobbler/users.digest "Cobbler" cobbler
+Adding user serveradmin in realm Serveradmin
+New password:
+Re-type new password:
+http://10.0.72.3/cobbler_web
 sudo cobbler sync
-
-#sudo htdigest /etc/cobbler/users.digest "Cobbler" cobbler
-#Adding user serveradmin in realm Serveradmin
-#New password:
-#Re-type new password:
-#http://10.0.72.3/cobbler_web
-#sudo cobbler sync
 sudo mount -o loop /images/ubuntu-14.04.2-server-amd64.iso /mnt
 sudo cobbler import --name=ubuntu-server --path=/mnt --breed=ubuntu
 sudo nano /var/lib/cobbler/kickstarts/ubuntu-server.preseed
