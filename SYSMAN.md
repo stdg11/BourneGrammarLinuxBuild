@@ -187,7 +187,7 @@ Boot > CSM (Compatibility Support Module) >
   Launch Video OpROM policy - Legacy only
 ```
 
-## Importing systems from MS DHCP
+## Importing systems from MS DHCP to Cobbler
 
 TODO - Powershell over RPC
 
@@ -214,6 +214,19 @@ sudo pip install fabric
 mkdir ~/.ssh
 chmod 700 ~/.ssh
 ssh-keygen -t rsa
+
+#setup fabric
+wget https://raw.github.com/AwaseConfigurations/main/master/scripts/getfabric
+chmod u+x getfabric
+./getfabric
+
+#generate pair of keys [if absent], put public key to workstations
+fab pubkey_distribute
+
+#run fabrics init and main tasks
+fab init
+fab main
+
 
 ## References
 
