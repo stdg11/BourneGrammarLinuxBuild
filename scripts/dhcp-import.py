@@ -39,5 +39,4 @@ try:
 except:
     pass
 
-target.close()
 print (" %s Systems processed" % (count)) 
