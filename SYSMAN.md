@@ -213,3 +213,4 @@ https://github.com/cobbler/cobbler/commit/7df50e72868b0981accd2e2bc3f7e56ab0761a
 ## TODO
 
 Fix cobblerd init
+copy ubuntu.seed
