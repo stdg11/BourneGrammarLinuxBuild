@@ -5,8 +5,7 @@ import cobbler.api as capi
 handle = capi.BootAPI()
 hostlist = []
 
-for system in handle.systems():
-  hostlist.append(system.name)
+hostlist.append(system.name)
 
 env.hosts = hostlist
 
