@@ -21,9 +21,7 @@ file = open(filename, "r") # Open filename Read only
 xml = file.read() # Read the contents of the file into variable xml
 json = xmltodict.parse(xml) # Parse xml into JSON style dictionary
 leases = json['DHCPServer']['IPv4']['Scopes']['Scope']['Leases']['Lease'] # Retrieve each lease
-fab_hosts = fabric_hosts
 count = 0 
-target = open(fab_hosts, 'w')
 
 try:
     for lease in leases:
@@ -35,8 +33,6 @@ try:
             subprocess.call(['cobbler', 'system', 'add', '--name=%s' % hostname , '--profile=ubuntu-server-x86_64', '--mac=%s' % mac, '--interface=eth0'])
             print ("%s Added Succesfully" % hostname)
             count += 1
-            target.write(hostname)
-            target.write("\n")
         except:
             print ("%s NOT Added" % hostname)
             pass
