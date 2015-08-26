@@ -3,6 +3,7 @@ from fabric.api import *
 import cobbler.api as capi
 
 handle = capi.BootAPI()
+hostlist = []
 
 for system in handle.systems():
   hostlist += system.name
