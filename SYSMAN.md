@@ -220,10 +220,7 @@ mkdir ~/.ssh
 chmod 700 ~/.ssh
 ssh-keygen -t rsa
 
-#setup fabric
-wget https://raw.github.com/AwaseConfigurations/main/master/scripts/getfabric
-chmod u+x getfabric
-./getfabric
+
 
 #generate pair of keys [if absent], put public key to workstations
 fab pubkey_distribute
