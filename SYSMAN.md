@@ -139,11 +139,64 @@ Assign the ubuntu.seed to the ubuntu profile
 sudo cobbler profile edit --name=ubuntu-server-x86_64 --kickstart=/var/lib/cobbler/kickstarts/ubuntu.seed
 ```
 
-## Importing systems for MS DHCP
+## Dual Boot
+
+If you plan on dual booting with Windows firstly work out if Windows is installed in BIOS or UEFI mode first, this will save you a lot of headaches as you cannot boot with both types.
+
+Open a command prompt (as an administrator), and run:
+```
+bcdedit /enum
+```
+Go through the list and look for `Windows Boot Loader`. If your system is booted in EFI mode, the path value will be `\Windows\system32\winload.efi` (note the .efi extension - this will revert to .exe otherwise).
+
+If you're running a MS DHCP server you need to set the bootfile to BIOS or UEFI
+
+BIOS - `pxelinux.0`
+UEFI (64-bit) - `grub/grub-x86_64.efi`
+
+Alternatively if you're using a Linux DHCP server see:  
+https://github.com/cobbler/cobbler/commit/7df50e72868b0981accd2e2bc3f7e56ab076
+
+With Partitioning we install Windows on half the Hard Drive, leaving the other half free. Then install Ubuntu using free space:
+
+```bash
+d-i partman-auto/init_automatically_partition select biggest_free
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+d-i partman-md/confirm_nooverwrite boolean true
+d-i partman-lvm/confirm_nooverwrite boolean true
+d-i partman-partitioning/confirm_write_new_label boolean true
+```
+
+You will most likely have to setup your machine to boot in UEFI mode. This differs per Motherboard. It will most likely be in your boot settings.
+
+We run with AsRock H81M-HDS':
+
+Firstly check the Hard Drive is set to AHCI mode.  
+`Advanced > Storage Configuration > SATA Mode Selection > AHCI`
+
+Then change the CSM settings:
+```
+Boot > CSM (Compatibility Support Module) > 
+  CSM - Enabled
+  Launch PXE OpROM policy - UEFI only
+  Launch Storage OpROM policy - UEFI only
+  Launch Video OpROM policy - Legacy only
+```
+
+## Importing systems from MS DHCP
 
 python-pip
 pip install xmltodict
 
+## Configuration management
+
+sudo apt-get install python-pip
+sudo pip install fabric
+mkdir ~/.ssh
+chmod 700 ~/.ssh
+ssh-keygen -t rsa
 
 ## References
 
@@ -151,3 +204,9 @@ https://wiki.linaro.org/LEG/Engineering/Kernel/UEFI/UEFI_Cobbler
 http://springerpe.github.io/tech/2014/09/09/Installing-Cobbler-2.6.5-on-Ubuntu-14.04-LTS.html  
 https://help.ubuntu.com/community/Cobbler/  
 http://cobbler.github.io/manuals/quickstart/  
+https://help.ubuntu.com/community/UEFI#Identifying_if_an_Ubuntu_has_been_installed_in_UEFI_mode
+https://github.com/cobbler/cobbler/commit/7df50e72868b0981accd2e2bc3f7e56ab0761ab7
+
+## TODO
+
+Fix cobblerd init
