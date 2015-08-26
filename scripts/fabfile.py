@@ -13,7 +13,7 @@ for system in handle.systems():
 env.hosts = hostlist
 
 def uptime():
-  if _is_host_up(env.host, int(env.port)) is True:
+  if is_host_up(env.host, int(env.port)) is True:
     run('uptime')
 
 def is_host_up(host, port):
