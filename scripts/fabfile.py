@@ -10,9 +10,6 @@ for system in handle.systems():
 
 env.hosts = hostlist
 
-def print_systems():
-  print(env.hosts)
-
 def uptime():
   run('uptime')
 
