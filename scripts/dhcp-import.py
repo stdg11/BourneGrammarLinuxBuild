@@ -37,7 +37,7 @@ try:
             count += 1
             target.write(hostname)
             target.write("\n")
-       except:
+        except:
             print ("%s NOT Added" % hostname)
             pass
 except:
