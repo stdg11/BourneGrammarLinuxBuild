@@ -6,7 +6,7 @@ handle = capi.BootAPI()
 hostlist = []
 
 for system in handle.systems():
-  hostlist += system.name
+  hostlist.append(system.name)
 
 env.hosts = hostlist
 
