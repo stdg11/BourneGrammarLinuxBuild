@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 from fabric.api import *
 import cobbler.api as capi
+import socket
+import paramiko
 
 handle = capi.BootAPI()
 hostlist = []
@@ -11,7 +13,24 @@ for system in handle.systems():
 env.hosts = hostlist
 
 def uptime():
-  run('uptime')
+  if _is_host_up(env.host, int(env.port)) is True:
+    run('uptime')
+
+def is_host_up(host, port):
+    # Set the timeout
+    original_timeout = socket.getdefaulttimeout()
+    new_timeout = 3
+    socket.setdefaulttimeout(new_timeout)
+    host_status = False
+    try:
+        transport = paramiko.Transport((host, port))
+        host_status = True
+    except:
+        print('***Warning*** Host {host} on port {port} is down.'.format(
+            host=host, port=port)
+        )
+    socket.setdefaulttimeout(original_timeout)
+    return host_status
 
 def pubkey_distribute():
 	""""Create a pair of keys (if needed) and distribute the pubkey to hosts"""
