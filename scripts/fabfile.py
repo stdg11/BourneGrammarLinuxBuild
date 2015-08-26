@@ -1,7 +1,16 @@
 #!/usr/bin/env python
 from fabric.api import *
+import cobbler.api as capi
 
-env.hosts = open('hosts_file', 'r').readlines()
+handle = capi.BootAPI()
+
+for system in handle.systems():
+  hostlist += system.name
+
+env.hosts = hostlist
+
+def print_systems():
+  print(env.hosts)
 
 def uptime():
   run('uptime')
