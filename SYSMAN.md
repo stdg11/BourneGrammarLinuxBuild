@@ -2,8 +2,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 Change password to servradmin!!!
 
-**Contents**
-
   - [Prerequisites](#prerequisites)
   - [Installing Cobbler](#installing-cobbler)
   - [Setup cobbler-web](#setup-cobbler-web)
@@ -12,7 +10,6 @@ Change password to servradmin!!!
   - [Dual Boot](#dual-boot)
   - [Importing systems from MS DHCP to Cobbler](#importing-systems-from-ms-dhcp-to-cobbler)
   - [Configuration management](#configuration-management)
-- [setup fabric](#setup-fabric)
 - [generate pair of keys [if absent], put public key to workstations](#generate-pair-of-keys-if-absent-put-public-key-to-workstations)
 - [run fabrics init and main tasks](#run-fabrics-init-and-main-tasks)
   - [References](#references)
