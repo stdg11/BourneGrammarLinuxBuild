@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from fabric.api import *
 
-env.hosts = [ 'LSC103' ]
+env.hosts = open('hosts_file', 'r').readlines()
 
 def uptime():
   run('uptime')
