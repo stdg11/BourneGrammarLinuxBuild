@@ -17,8 +17,7 @@
 
 ## Prerequisites
 
-Start with an install of Ubuntu/Debian Server with OpenSSH Server.
-
+Start with an install of Ubuntu/Debian Server with OpenSSH Server and networking setup/resolving correctly.
 
 ## Installing Cobbler
 
@@ -190,8 +189,23 @@ Boot > CSM (Compatibility Support Module) >
 
 ## Importing systems from MS DHCP
 
-python-pip
-pip install xmltodict
+TODO - Powershell over RPC
+
+Within the scripts directory is a python script to import Hostnames and MAC Address' from a DHCP scope (In our case Student PC's). To avoid AD conflicts it prepends L (for Linux).
+
+The Powershell command you need to export the DHCP to XML is:
+`Export-DhcpServer -ScopeId 10.0.72.0 -File dhcp-export.xml -Leases -Force`
+
+To run the python script you need to install `xmltodict`.
+```bash
+sudo apt-get install python-pip
+sudo pip install xmltodict
+```
+
+To run the import copy your xml document to your server.
+```bash
+./dhcp-import.py path/to/file.xml
+```
 
 ## Configuration management
 
