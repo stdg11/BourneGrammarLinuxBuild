@@ -2,7 +2,7 @@
 # https://help.ubuntu.com/12.04/installation-guide/
 
 # Preseeding only locale sets language, country and locale.
-d-i debian-installer/locale string en_UK
+d-i debian-installer/locale string en_GB
 
 # Keyboard selection.
 # Disable automatic (interactive) keymap detection.
@@ -48,14 +48,22 @@ d-i live-installer/net-image string http://$http_server/cobbler/links/$distro_na
 
 # Disk Partitioning
 # Use LVM, and wipe out anything that already exists
+#d-i partman/choose_partition select finish
+#d-i partman/confirm boolean true
+#d-i partman/confirm_nooverwrite boolean true
+#d-i partman-auto/method string lvm
+#d-i partman-lvm/device_remove_lvm boolean true
+#d-i partman-lvm/confirm boolean true
+#d-i partman-lvm/confirm_nooverwrite boolean true
+#d-i partman-md/device_remove_md boolean true
+#d-i partman-partitioning/confirm_write_new_label boolean true
+
+d-i partman-auto/init_automatically_partition select biggest_free
 d-i partman/choose_partition select finish
 d-i partman/confirm boolean true
 d-i partman/confirm_nooverwrite boolean true
-d-i partman-auto/method string lvm
-d-i partman-lvm/device_remove_lvm boolean true
-d-i partman-lvm/confirm boolean true
+d-i partman-md/confirm_nooverwrite boolean true
 d-i partman-lvm/confirm_nooverwrite boolean true
-d-i partman-md/device_remove_md boolean true
 d-i partman-partitioning/confirm_write_new_label boolean true
 
 # You can choose one of the three predefined partitioning recipes:
@@ -109,6 +117,11 @@ $SNIPPET('preseed_apt_repo_config')
 # wget is REQUIRED otherwise quite a few things won't work
 # later in the build (like late-command scripts)
 d-i pkgsel/include string ntp ssh wget
+
+# Setup grub
+d-i grub-installer/skip boolean false
+d-i grub-installer/only_debian boolean true
+d-i grub-installer/with_other_os boolean true
 
 # Use the following option to add additional boot parameters for the
 # installed system (if supported by the bootloader installer).
