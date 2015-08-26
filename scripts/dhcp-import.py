@@ -27,7 +27,7 @@ try:
     for lease in leases:
         record = (lease['HostName'], lease['ClientId'])
         hostname = record[0]
-        raw_mac = record [1]
+        raw_mac = "L" + record [1]
         mac = raw_mac.replace('-',':')
         subprocess.call(['cobbler', 'system', 'add', '--name=%s' % hostname , '--profile=ubuntu-server-x86_64', '--mac=%s' % mac, '--interface=eth0'])
         print ("%s Added Succesfully" % hostname)
