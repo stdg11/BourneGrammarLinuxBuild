@@ -2,16 +2,19 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
 
-- [Prerequisites](#prerequisites)
-- [Installing Cobbler](#installing-cobbler)
-- [Setup cobbler-web](#setup-cobbler-web)
-- [Adding Ubuntu Server image to Cobbler](#adding-ubuntu-server-image-to-cobbler)
-- [Configuring Preseed](#configuring-preseed)
-- [Dual Boot](#dual-boot)
-- [Importing systems from MS DHCP](#importing-systems-from-ms-dhcp)
-- [Configuration management](#configuration-management)
-- [References](#references)
-- [TODO](#todo)
+  - [Prerequisites](#prerequisites)
+  - [Installing Cobbler](#installing-cobbler)
+  - [Setup cobbler-web](#setup-cobbler-web)
+  - [Adding Ubuntu Server image to Cobbler](#adding-ubuntu-server-image-to-cobbler)
+  - [Configuring Preseed](#configuring-preseed)
+  - [Dual Boot](#dual-boot)
+  - [Importing systems from MS DHCP to Cobbler](#importing-systems-from-ms-dhcp-to-cobbler)
+  - [Configuration management](#configuration-management)
+- [setup fabric](#setup-fabric)
+- [generate pair of keys [if absent], put public key to workstations](#generate-pair-of-keys-if-absent-put-public-key-to-workstations)
+- [run fabrics init and main tasks](#run-fabrics-init-and-main-tasks)
+  - [References](#references)
+  - [TODO](#todo)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
