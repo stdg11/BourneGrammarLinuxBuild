@@ -1,0 +1,2566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<DHCPServer xmlns="http://schemas.microsoft.com/windows/DHCPServer">
+  <MajorVersion xmlns="">6</MajorVersion>
+  <MinorVersion xmlns="">3</MinorVersion>
+  <IPv4 xmlns="">
+    <ConflictDetectionAttempts>0</ConflictDetectionAttempts>
+    <NapEnabled>false</NapEnabled>
+    <NpsUnreachableAction>Full</NpsUnreachableAction>
+    <ActivatePolicies>true</ActivatePolicies>
+    <Classes>
+      <Class>
+        <Name>Default Routing and Remote Access Class</Name>
+        <Type>User</Type>
+        <Data>0x525241532e4d6963726f736f6674</Data>
+        <Description>User class for remote access clients</Description>
+      </Class>
+      <Class>
+        <Name>Default Network Access Protection Class</Name>
+        <Type>User</Type>
+        <Data>0x4d5346542051756172616e74696e65</Data>
+        <Description>Default special user class for Restricted Access clients</Description>
+      </Class>
+      <Class>
+        <Name>Default BOOTP Class</Name>
+        <Type>User</Type>
+        <Data>0x424f4f54502e4d6963726f736f6674</Data>
+        <Description>User class for BOOTP Clients</Description>
+      </Class>
+      <Class>
+        <Name>Microsoft Windows 2000 Options</Name>
+        <Type>Vendor</Type>
+        <Data>0x4d53465420352e30</Data>
+        <Description>Microsoft vendor-specific options for Windows 2000 and above Clients</Description>
+      </Class>
+      <Class>
+        <Name>Microsoft Windows 98 Options</Name>
+        <Type>Vendor</Type>
+        <Data>0x4d534654203938</Data>
+        <Description>Microsoft vendor-specific options for Windows 98 Clients</Description>
+      </Class>
+      <Class>
+        <Name>Microsoft Options</Name>
+        <Type>Vendor</Type>
+        <Data>0x4d534654</Data>
+        <Description>Microsoft vendor-specific options applicable to all Windows Clients</Description>
+      </Class>
+    </Classes>
+    <OptionDefinitions>
+      <OptionDefinition>
+        <Name>Classless Static Routes</Name>
+        <OptionId>121</OptionId>
+        <Type>BinaryData</Type>
+        <MultiValued>false</MultiValued>
+        <Description>Destination, mask and router IP addresses in priority order</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Subnet Mask</Name>
+        <OptionId>1</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Subnet mask in network byte order</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Time Offset</Name>
+        <OptionId>2</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>UCT offset in seconds</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Router</Name>
+        <OptionId>3</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of router addresses ordered by preference</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Time Server</Name>
+        <OptionId>4</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of time server addresses, by preference</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Name Servers</Name>
+        <OptionId>5</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of name servers [IEN 116], by preference</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>DNS Servers</Name>
+        <OptionId>6</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of DNS servers, by preference</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Log Servers</Name>
+        <OptionId>7</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of MIT_LCS UDP log servers on subnet</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Cookie Servers</Name>
+        <OptionId>8</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of cookie servers, RFC 865</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>LPR Servers</Name>
+        <OptionId>9</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of RFC 1179 servers, by preference</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Impress Servers</Name>
+        <OptionId>10</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of Imagen Impress Servers</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Resource Location Servers</Name>
+        <OptionId>11</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of RFC 887 ResLoc Servers on subnet, by preference</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Host Name</Name>
+        <OptionId>12</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>Host name for client, RFC 1035 character set</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Boot File Size</Name>
+        <OptionId>13</OptionId>
+        <Type>Word</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>Size of boot image file in 512-octet blocks</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Merit Dump File</Name>
+        <OptionId>14</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>Path name for crash dump file</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>DNS Domain Name</Name>
+        <OptionId>15</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>DNS Domain name for client resolutions</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Swap Server</Name>
+        <OptionId>16</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Address of client's swap server</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Root Path</Name>
+        <OptionId>17</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>Path name for client's root disk, char set NVT ASCII</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Extensions Path</Name>
+        <OptionId>18</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>tftp file for option extensions</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>IP Layer Forwarding</Name>
+        <OptionId>19</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>Disable/enable IP packet forwarding on this client</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Nonlocal Source Routing</Name>
+        <OptionId>20</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>Disable/enable nonlocal datagrams</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Policy Filter Masks</Name>
+        <OptionId>21</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Destination/mask IP address pairs to filter source routes</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Max DG Reassembly Size</Name>
+        <OptionId>22</OptionId>
+        <Type>Word</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>Maximum size datagram for reassembly by client; max 576</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Default IP Time-to-live</Name>
+        <OptionId>23</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>Default TTL for client's use on outgoing DGs</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Path MTU Aging Timeout</Name>
+        <OptionId>24</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>Timeout in seconds for aging Path MTU values; RFC 1191</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Path MTU Plateau Table</Name>
+        <OptionId>25</OptionId>
+        <Type>Word</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>MTU discovery sizes, sorted by size, all &gt;= 68</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>MTU Option</Name>
+        <OptionId>26</OptionId>
+        <Type>Word</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>MTU discovery size, &gt;= 68</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>All subnets are local</Name>
+        <OptionId>27</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>The client assumes that all subnets are local</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Broadcast Address</Name>
+        <OptionId>28</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Broadcast address</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Perform Mask Discovery</Name>
+        <OptionId>29</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>The client should use ICMP for subnet mask discovery.</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Mask Supplier Option</Name>
+        <OptionId>30</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>The client should respond to subnet mask requests via ICMP.</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Perform Router Discovery</Name>
+        <OptionId>31</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>The client should solicit routers using RFC 1256.</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Router Solicitation Address</Name>
+        <OptionId>32</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Address to use for router solicitation</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Static Route Option</Name>
+        <OptionId>33</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Destination/router address pairs, in priority order</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Trailer Encapsulation</Name>
+        <OptionId>34</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>The client should negotiate use of trailers (RFC 983).</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>ARP Cache Timeout</Name>
+        <OptionId>35</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>Timeout in seconds for ARP cache entries</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Ethernet Encapsulation</Name>
+        <OptionId>36</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>0=&gt;client should use ENet V2; 1=&gt; IEEE 802.3</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>TCP Default Time-to-live</Name>
+        <OptionId>37</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>TTL that client uses when sending TCP segments</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Keepalive Interval</Name>
+        <OptionId>38</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>Keepalive timeout in seconds</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Keepalive Garbage</Name>
+        <OptionId>39</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>Send garbage octet</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>NIS Domain Name</Name>
+        <OptionId>40</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>Name of Network Information Service domain</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>NIS Servers</Name>
+        <OptionId>41</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Addresses of NIS servers on client's subnet</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>NTP Servers</Name>
+        <OptionId>42</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Addresses of Network Time Protocol servers</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Vendor Specific Info</Name>
+        <OptionId>43</OptionId>
+        <Type>BinaryData</Type>
+        <MultiValued>false</MultiValued>
+        <Description>Embedded vendor-specific options</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>WINS/NBNS Servers</Name>
+        <OptionId>44</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>NBNS Address(es) in priority order</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>NetBIOS over TCP/IP NBDD</Name>
+        <OptionId>45</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>NetBIOS over TCP/IP NBDD address(es) in priority order</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>WINS/NBT Node Type</Name>
+        <OptionId>46</OptionId>
+        <Type>Byte</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0x00</DefaultValue>
+        <Description>0x1 = B-node, 0x2 = P-node, 0x4 = M-node, 0x8 = H-node</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>NetBIOS Scope ID</Name>
+        <OptionId>47</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>NetBIOS over TCP/IP Scope ID</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>X Window System Font</Name>
+        <OptionId>48</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of X Windows font servers</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>X Window System Display</Name>
+        <OptionId>49</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Array of X Windows Display Mgr servers</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Lease</Name>
+        <OptionId>51</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>Client IP address lease time in seconds</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Renewal (T1) Time Value</Name>
+        <OptionId>58</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>Time between addr assignment to RENEWING state</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Rebinding (T2) Time Value</Name>
+        <OptionId>59</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>Time from addr assignment to REBINDING state</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>NIS+ Domain Name</Name>
+        <OptionId>64</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>The name of the client's NIS+ domain.</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>NIS+ Servers</Name>
+        <OptionId>65</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>A list of IP addresses indicating NIS+ servers</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Boot Server Host Name</Name>
+        <OptionId>66</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>TFTP boot server host name</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Bootfile Name</Name>
+        <OptionId>67</OptionId>
+        <Type>String</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue />
+        <Description>Bootfile Name</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Mobile IP Home Agents</Name>
+        <OptionId>68</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>Mobile IP home agents in priority order</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Simple Mail Transport Protocol (SMTP) Servers</Name>
+        <OptionId>69</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>List of SMTP servers available to the client</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Post Office Protocol (POP3) Servers</Name>
+        <OptionId>70</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>List of POP3 servers available to the client</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Network News Transport Protocol (NNTP) Servers</Name>
+        <OptionId>71</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>List of NNTP servers available to the client</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>World Wide Web (WWW) Servers</Name>
+        <OptionId>72</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>List of WWW servers available to the client</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Finger Servers</Name>
+        <OptionId>73</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>List of Finger servers available to the client</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Internet Relay Chat (IRC) Servers</Name>
+        <OptionId>74</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>List of IRC servers available to the client</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>StreetTalk Servers</Name>
+        <OptionId>75</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>List of StreetTalk servers available to the client</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>StreetTalk Directory Assistance (STDA) Servers</Name>
+        <OptionId>76</OptionId>
+        <Type>IPv4Address</Type>
+        <MultiValued>true</MultiValued>
+        <DefaultValue>0.0.0.0</DefaultValue>
+        <Description>List of STDA servers available to the client</Description>
+        <VendorClass />
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Microsoft Disable Netbios Option </Name>
+        <OptionId>1</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>1</DefaultValue>
+        <Description>Option for enabling or disabling Netbios for Microsoft Windows 2000 Clients</Description>
+        <VendorClass>Microsoft Options</VendorClass>
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Microsoft Release DHCP Lease On Shutdown Option</Name>
+        <OptionId>2</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>1</DefaultValue>
+        <Description>Option for enabling or disabling Windows 2000 Clients to release DHCP lease on shutdown</Description>
+        <VendorClass>Microsoft Options</VendorClass>
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Microsoft Default Router Metric Base</Name>
+        <OptionId>3</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>1</DefaultValue>
+        <Description>Default Router Base Metrics for Microsoft Windows 2000 Clients</Description>
+        <VendorClass>Microsoft Options</VendorClass>
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Microsoft Disable Netbios Option </Name>
+        <OptionId>1</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>1</DefaultValue>
+        <Description>Option for enabling or disabling Netbios for Microsoft Windows 2000 Clients</Description>
+        <VendorClass>Microsoft Windows 2000 Options</VendorClass>
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Microsoft Release DHCP Lease On Shutdown Option</Name>
+        <OptionId>2</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>1</DefaultValue>
+        <Description>Option for enabling or disabling Windows 2000 Clients to release DHCP lease on shutdown</Description>
+        <VendorClass>Microsoft Windows 2000 Options</VendorClass>
+      </OptionDefinition>
+      <OptionDefinition>
+        <Name>Microsoft Default Router Metric Base</Name>
+        <OptionId>3</OptionId>
+        <Type>DWord</Type>
+        <MultiValued>false</MultiValued>
+        <DefaultValue>0</DefaultValue>
+        <Description>Default Router Base Metrics for Microsoft Windows 2000 Clients</Description>
+        <VendorClass>Microsoft Windows 2000 Options</VendorClass>
+      </OptionDefinition>
+    </OptionDefinitions>
+    <OptionValues>
+      <OptionValue>
+        <OptionId>81</OptionId>
+        <Value>21</Value>
+        <VendorClass />
+        <UserClass />
+      </OptionValue>
+    </OptionValues>
+    <Filters>
+      <Allow>false</Allow>
+      <Deny>true</Deny>
+      <Filter>
+        <List>Deny</List>
+        <MacAddress>BC-3B-AF-4E-BE-78</MacAddress>
+        <Description>Hollys-iphone.bourne-grammar.lincs.sch.uk</Description>
+      </Filter>
+      <Filter>
+        <List>Deny</List>
+        <MacAddress>9C-35-EB-A0-4B-AC</MacAddress>
+        <Description>Baileys-iPhone.bourne-grammar.lincs.sch.uk</Description>
+      </Filter>
+    </Filters>
+    <Scopes>
+      <Scope>
+        <ScopeId>10.0.72.0</ScopeId>
+        <Name>Student PC's</Name>
+        <SubnetMask>255.255.254.0</SubnetMask>
+        <StartRange>10.0.72.1</StartRange>
+        <EndRange>10.0.73.254</EndRange>
+        <LeaseDuration>8.00:00:00</LeaseDuration>
+        <State>Active</State>
+        <Type>Dhcp</Type>
+        <MaxBootpClients>4294967295</MaxBootpClients>
+        <NapEnable>false</NapEnable>
+        <Delay>0</Delay>
+        <NapProfile />
+        <Description />
+        <ActivatePolicies>true</ActivatePolicies>
+        <SuperScopeName />
+        <ExclusionRanges>
+          <IPRange>
+            <StartRange>10.0.72.1</StartRange>
+            <EndRange>10.0.72.2</EndRange>
+          </IPRange>
+        </ExclusionRanges>
+        <OptionValues>
+          <OptionValue>
+            <OptionId>3</OptionId>
+            <Value>10.0.72.1</Value>
+            <VendorClass />
+            <UserClass />
+          </OptionValue>
+          <OptionValue>
+            <OptionId>6</OptionId>
+            <Value>10.0.77.100</Value>
+            <Value>10.0.77.101</Value>
+            <VendorClass />
+            <UserClass />
+          </OptionValue>
+          <OptionValue>
+            <OptionId>15</OptionId>
+            <Value>bourne-grammar.lincs.sch.uk</Value>
+            <VendorClass />
+            <UserClass />
+          </OptionValue>
+          <OptionValue>
+            <OptionId>44</OptionId>
+            <Value>10.0.77.100</Value>
+            <Value>10.0.77.101</Value>
+            <VendorClass />
+            <UserClass />
+          </OptionValue>
+          <OptionValue>
+            <OptionId>46</OptionId>
+            <Value>0x08</Value>
+            <VendorClass />
+            <UserClass />
+          </OptionValue>
+          <OptionValue>
+            <OptionId>51</OptionId>
+            <Value>691200</Value>
+            <VendorClass />
+            <UserClass />
+          </OptionValue>
+          <OptionValue>
+            <OptionId>66</OptionId>
+            <Value>10.0.72.3</Value>
+            <VendorClass />
+            <UserClass />
+          </OptionValue>
+          <OptionValue>
+            <OptionId>67</OptionId>
+            <Value>grub/grub-x86_64.efi</Value>
+            <VendorClass />
+            <UserClass />
+          </OptionValue>
+          <OptionValue>
+            <OptionId>81</OptionId>
+            <Value>23</Value>
+            <VendorClass />
+            <UserClass />
+          </OptionValue>
+        </OptionValues>
+        <Reservations>
+          <Reservation>
+            <Name>IT_NAS.bourne-grammar.lincs.sch.uk</Name>
+            <IPAddress>10.0.72.227</IPAddress>
+            <ClientId>28-c6-8e-35-ef-96</ClientId>
+            <Type>Dhcp</Type>
+            <Description />
+          </Reservation>
+          <Reservation>
+            <Name>sysman.bourne-grammar.lincs.sch.uk</Name>
+            <IPAddress>10.0.72.3</IPAddress>
+            <ClientId>00-22-19-98-54-09</ClientId>
+            <Type>Both</Type>
+            <Description />
+          </Reservation>
+        </Reservations>
+        <Leases>
+          <Lease>
+            <IPAddress>10.0.72.3</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>00-22-19-98-54-09</ClientId>
+            <AddressState>ActiveReservation</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>NoRegistration</DnsRR>
+            <DnsRegistration>NotApplicable</DnsRegistration>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>sysman.bourne-grammar.lincs.sch.uk</HostName>
+            <Description />
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.4</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-ab-03</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:50Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT224.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.5</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-ed</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:11Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC201.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.6</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a2-fe</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:05Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC202.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.8</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-27</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:09Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC204.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.9</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-29</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:10Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC205.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.10</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-5a</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:09Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC206.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.11</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-37</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:08Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC207.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.12</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4d-00-5a</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:10Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC208.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.13</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-32</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:09Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC209.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.14</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-3b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:10Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC210.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.15</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-59</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:37Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC211.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.16</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4d-01-8d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:37Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC212.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.17</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-26</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:39Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC213.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.18</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-e6</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:41Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC215.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.19</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-3b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:42Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC216.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.20</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-2b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:44Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC217.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.21</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-5d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:52Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC219.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.22</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-80</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:52Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC220.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.23</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-66</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:41Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC214.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.24</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-48</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:47Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC221.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.25</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-51</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:48Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC222.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.26</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-5b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:55Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC223.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.27</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-58</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:49Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC224.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.28</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-43</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:52Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC225.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.29</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-30</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:02Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC226.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.30</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-67</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:55Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC228.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.31</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-19</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:56Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC229.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.32</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-31</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:57Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC230.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.33</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-1d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:05Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC231.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.35</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>90-2b-34-e3-97-9f</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-08-29 08:52:07Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ILC27.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.36</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4d-01-10</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:44Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC218.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.38</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>90-2b-34-e7-9a-53</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-08-29 08:42:11Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ILC25.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.39</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>90-2b-34-e3-8c-e0</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>PTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-03 07:58:35Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>LICT101.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.40</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>90-2b-34-e7-54-65</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-08-29 08:41:01Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ILC24.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.44</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>90-2b-34-e3-8c-dc</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-08-29 08:21:21Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ILC18.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.53</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-45</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:26Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC131.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.54</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-29</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:27Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC130.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.55</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-46</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:26:29Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC103.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.56</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-4f</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:03:52Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC104.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.57</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-36</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:00Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC105.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.58</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-23</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:03Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC106.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.59</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-08</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:05Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC107.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.60</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-77</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:06Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC108.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.61</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-f9</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:06Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC109.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.62</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-22</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:07Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC110.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.63</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-47</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:08Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC111.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.64</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-79</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:13Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC112.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.65</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-2a</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:10Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC113.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.66</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-88</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:11Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC114.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.67</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-f2</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:17Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC115.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.68</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a1-07</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:14Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC116.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.69</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-01</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:13Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC117.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.70</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-78</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:15Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC118.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.71</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-92</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:15Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC119.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.72</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-35</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:15Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC120.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.73</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-2d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:19Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC121.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.74</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-50</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:24Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC129.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.75</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-3e</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:25Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC128.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.76</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-17</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:24Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC127.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.77</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-49</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:21Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC126.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.78</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-37</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:22Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC125.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.79</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-5c</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:19Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC124.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.80</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-60</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:20Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC123.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.81</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-1f</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:27Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC122.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.82</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-8a</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>PTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-03 15:16:44Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC101.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.83</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-3e</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:04:55Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC227.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.84</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-48</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:12Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT201.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.85</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-20</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:47Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT223.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.86</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a6-23</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:51Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT222.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.87</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-0f</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:52Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT221.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.88</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-ff</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:11Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT202.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.89</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4d-01-ab</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:10Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT203.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.90</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-e9</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:54Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT220.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.91</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-21</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:51Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT219.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.92</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-82</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:08Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT204.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.93</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-50</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:51Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT218.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.94</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-f4</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:52Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT217.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.95</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4d-00-a4</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:06Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT205.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.96</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-55</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:53Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT216.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.97</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-40</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:53Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT215.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.98</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-73</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:27Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT206.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.99</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-fb</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:14Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT207.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.100</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-58</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>NoRegistration</DnsRR>
+            <DnsRegistration>NotApplicable</DnsRegistration>
+            <LeaseExpiryTime>2015-08-27 08:59:27Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.101</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-2a</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:58Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT213.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.102</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4d-01-93</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:56Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT214.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.103</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-3a</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:57Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT212.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.104</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-eb</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:59Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT211.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.105</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-13</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:01Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT209.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.106</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-7b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:23:41Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT210.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.107</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-6f</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:31:12Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT230.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.108</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-1b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:28Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT228.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.109</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-02</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:31:56Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT231.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.110</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-52</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:21Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT227.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.111</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-b0</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:29Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT226.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.112</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-7c</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:24Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT225.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.113</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-7d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:18Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT229.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.114</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-6b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:16Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT232.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.116</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-72</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:24Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT124.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.117</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4d-01-3a</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:25Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT123.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.118</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-56</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:22Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT122.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.119</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-63</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:21Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT121.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.120</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-34</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:19Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT120.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.121</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-2b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:02Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT101.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.122</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-54</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:41Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT119.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.123</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-3d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:16Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT118.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.124</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-9e</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:16Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT117.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.125</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-0b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:02Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT102.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.126</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a7-72</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:30Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT128.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.127</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-39</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:30Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT127.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.128</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-0d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:03Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT103.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.129</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-b3</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:05Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT104.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.130</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-1c</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:28Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT126.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.131</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-05</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:05Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT105.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.132</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-e4</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:06Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT106.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.133</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-90</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:14Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT107.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.134</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-e8</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:26Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT125.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.135</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-6d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:08Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT108.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.136</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-40</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:14Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT115.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.137</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-3d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:09Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT109.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.138</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-ed</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:13Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT114.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.139</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-4a</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:10Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT110.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.140</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-5f</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:13Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT113.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.141</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-3f</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:11Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT111.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.142</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-ee</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:20Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT112.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.143</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-25</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:33Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT129.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.144</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-45</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:16Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT116.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.145</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-aa-41</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:35Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT130.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.146</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-4b</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:35Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT131.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.147</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-4d</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:21:35Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT132.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.148</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-75</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:05:06Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>SC203.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.149</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>d0-50-99-4c-a9-f6</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-09-04 08:22:03Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ICT208.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.150</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>90-2b-34-e7-9a-e0</ClientId>
+            <AddressState>Active</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>AandPTR</DnsRR>
+            <DnsRegistration>Complete</DnsRegistration>
+            <LeaseExpiryTime>2015-08-29 08:39:10Z</LeaseExpiryTime>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>ILC26.bourne-grammar.lincs.sch.uk</HostName>
+          </Lease>
+          <Lease>
+            <IPAddress>10.0.72.227</IPAddress>
+            <ScopeId>10.0.72.0</ScopeId>
+            <ClientId>28-c6-8e-35-ef-96</ClientId>
+            <AddressState>ActiveReservation</AddressState>
+            <ClientType>Dhcp</ClientType>
+            <NapCapable>false</NapCapable>
+            <DnsRR>NoRegistration</DnsRR>
+            <DnsRegistration>NotApplicable</DnsRegistration>
+            <NapStatus>FullAccess</NapStatus>
+            <HostName>IT_NAS.bourne-grammar.lincs.sch.uk</HostName>
+            <Description />
+          </Lease>
+        </Leases>
+      </Scope>
+    </Scopes>
+  </IPv4>
+</DHCPServer>

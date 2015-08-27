@@ -12,7 +12,7 @@
 # ./dhcp-import.py filename.xml
 #
 # TODO: Add skip systems sysarg --skip
-
+# TODO: Skip blank hostnames - currently stops import
 
 import sys,xmltodict,subprocess
 
