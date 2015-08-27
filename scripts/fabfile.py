@@ -65,7 +65,6 @@ def pubkey_distribute():
 
 ## Main function to setup workstations ###
 @task
-@parallel
 def ubuntu_setup():
   """Main setup for workstations"""
   with settings(linewise=True,warn_only=True):
@@ -81,7 +80,6 @@ def ubuntu_setup():
       sudo("realm join --one-time-password bourne-grammar.lincs.sch.uk")
 
 @task
-@parallel
 def restore_repo():
   """ Restore default ubuntu repositories """
   with settings(linewise=True,warn_only=True):
