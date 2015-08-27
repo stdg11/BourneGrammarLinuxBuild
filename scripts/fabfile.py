@@ -73,7 +73,7 @@ def ubuntu_setup():
     if is_host_up(env.host, int(env.port)) is True:
       restore_repo()
       update()
-      install(realmd ntp git emacs libpam-mount cifs-utils)
+      sudo("apt-get install realmd ntp git emacs libpam-mount cifs-utils")
       file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/default/grub","/etc/default/grub",use_sudo=True)
       sudo("update-grub")
       sudo("systemctl set-default multi-user.target")
