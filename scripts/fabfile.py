@@ -62,7 +62,6 @@ def pubkey_distribute():
 		local('sudo chown $(whoami):$(whoami) /etc/ssh/ssh_config')
 		local('echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config')
 		local('sudo chown root:root /etc/ssh/ssh_config')
-                sudo('echo "serveradmin ALL=NOPASSWD: /bin/bash" >> /etc/sudoers')
 
 ## Main function to setup workstations ###
 @task
