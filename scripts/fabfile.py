@@ -86,7 +86,7 @@ def restore_repo():
   """ Restore default ubuntu repositories """
   with settings(linewise=True,warn_only=True):
     if is_host_up(env.host, int(env.port)) is True:
-      put("~/BourneGrammarLinuxBuild/configs/desktop/etc/apt/sources.list","/etc/apt/sources.list",use_sudo=True)
+      put("~/BourneGrammarLinuxBuild/configs/desktop/etc/apt/sources.list","/etc/apt/sources.list",use_sudo=True,shell=False)
 
 @task
 @parallel
