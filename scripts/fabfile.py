@@ -49,7 +49,6 @@ def is_host_up(host, port):
 
 ### push out serveradmin public key for passwordless login ###
 @task
-@parallel
 def pubkey_distribute():
 	""""Create a pair of keys (if needed) and distribute the pubkey to hosts"""
 	with settings(linewise=True,warn_only=True):
