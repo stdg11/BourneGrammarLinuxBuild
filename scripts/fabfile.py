@@ -87,7 +87,7 @@ def restore_repo():
   with settings(linewise=True,warn_only=True):
     if is_host_up(env.host, int(env.port)) is True:
       put("~/BourneGrammarLinuxBuild/configs/desktop/etc/apt/sources.list","/home/serveradmin/sources.list")
-      sudo("mv /home/serveradmin/sources.list /etc/apt/sources.list",use_sudo=True)
+      sudo("mv /home/serveradmin/sources.list /etc/apt/sources.list",shell=False)
 
 @task
 @parallel
