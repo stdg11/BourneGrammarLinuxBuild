@@ -145,7 +145,7 @@ def update_grub():
  with settings(linewise=True,warn_only=True):
           if is_host_up(env.host, int(env.port)) is True:
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/default/grub","/home/serveradmin/grub")
-            sudo("mv /home/serveradmin/grub", "/etc/default/grub")
+            sudo("mv /home/serveradmin/grub","/etc/default/grub")
             sudo("update-grub")
 
 ### Restore default Ubuntu repositories ###
