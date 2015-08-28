@@ -14,7 +14,7 @@
 
 ## Install Ubuntu
 
-Head over to the Ubuntu Download Page and download the latest LTS version.  
+Head over to the Ubuntu Download Page and download the latest LTS *server* version.  
 Install with defaults, enabling software updates and third party downloads.  
 When prompted follow the standard naming convention for hostname and set the username to *linuxadmin*  
 
@@ -84,7 +84,7 @@ GRUB_DEFAULT="Windows 7 (loader) (on /dev/sda1)"
 
 ## Boot to command line without X
 
-To boot to the command line run the below command.
+To boot to the command line run the below command.(Only ubuntu-desktop)
 
 `systemctl set-default multi-user.target`
 

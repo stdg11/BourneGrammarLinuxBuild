@@ -81,10 +81,19 @@ def ubuntu_setup():
       install("git")
       install("xubuntu-desktop")
       update_grub()
-      sudo("systemctl set-default multi-user.target") # Boot without X
       join_domain()
       sudoers()
       sudo("reboot")
+
+### Add global alias for startxfce4 to startx
+
+@task
+def startx_restore():
+  """Add global alias for startxfce4 to startx"""
+  with settings(linewise=True,warn_only=True):
+    if is_host_up(env.host, int(env.port)) is True:
+      file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/bash.bashrc","/home/serveradmin/bash.bashrc")
+      sudo("mv /home/serveradmin/bash.bashrc /etc/bash.bashrc")
 
 ### Dotfiles persistant across machines ###
 
