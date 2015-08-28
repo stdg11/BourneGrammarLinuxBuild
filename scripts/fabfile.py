@@ -164,7 +164,7 @@ def restore_repo():
 def update():
     """Update package list"""
     with settings(linewise=True, warn_only=True):
-        if is_host_up(env.host):
+        if is_host_up(env.host, int(env.port)) is True:
             sudo("apt-get update")
 
 ### apt-get install ###
@@ -173,7 +173,7 @@ def update():
 def install(package):
     """Install a package"""
     with settings(linewise=True, warn_only=True):
-        if is_host_up(env.host):
+        if is_host_up(env.host, int(env.port)) is True:
             sudo("apt-get update")
             for retry in range(2):
                 if sudo("apt-get -y install %s" % package).failed:
@@ -187,7 +187,7 @@ def install(package):
 def install_auto(package):
     """Install a package answering yes to all questions"""
     with settings(linewise=True, warn_only=True):
-        if is_host_up(env.host):
+        if is_host_up(env.host, int(env.port)) is True:
             sudo("apt-get update")
             sudo('DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y %s' % package)
 
@@ -226,7 +226,7 @@ def upgrade_auto():
 def file_put(localpath, remotepath):
     """Put file from local path to remote path"""
     with settings(linewise=True, warn_only=True):
-        if is_host_up(env.host):
+        if is_host_up(env.host, int(env.port)) is True:
             put(localpath,remotepath)
 
 ### Download file from remote to local ###
@@ -235,7 +235,7 @@ def file_put(localpath, remotepath):
 def file_get(remotepath, localpath):
     """Get file from remote path to local path"""
     with settings(linewise=True, warn_only=True):
-        if is_host_up(env.host):
+        if is_host_up(env.host, int(env.port)) is True:
             get(remotepath,localpath+'.'+env.host)
 
 ### Remove remote file
@@ -244,5 +244,5 @@ def file_get(remotepath, localpath):
 def file_remove(remotepath):
     """Remove file at remote path"""
     with settings(linewise=True, warn_only=True):
-        if is_host_up(env.host):
+        if is_host_up(env.host, int(env.port)) is True:
             sudo("rm -r %s" % remotepath)
