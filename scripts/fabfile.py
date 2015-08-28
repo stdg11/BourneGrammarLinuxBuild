@@ -84,7 +84,7 @@ def ubuntu_setup():
       sudo("systemctl set-default multi-user.target") # Boot without X
       join_domain()
       sudoers()
-      reboot()
+      sudo("reboot")
 
 ### Dotfiles persistant across machines ###
 
