@@ -88,6 +88,22 @@ To boot to the command line run the below command.(Only ubuntu-desktop)
 
 `systemctl set-default multi-user.target`
 
+For ubuntu server the above grub changes are adequate.
+
+To use startx as opposed to startxfce4 replace the contents of `/etc/X11/Xsession` with:
+
+```bash
+#!/bin/sh
+#
+# /etc/X11/Xsession
+#
+# global Xsession file -- used by display managers and xinit (startx)
+
+# $Id: Xsession 967 2005-12-27 07:20:55Z dnusinow $
+
+xfce4-session
+```
+
 ## Domain Integration
 
 To allow Active Directory users to logon you need to install:

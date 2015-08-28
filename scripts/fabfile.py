@@ -92,8 +92,8 @@ def startx_restore():
   """Add global alias for startxfce4 to startx"""
   with settings(linewise=True,warn_only=True):
     if is_host_up(env.host, int(env.port)) is True:
-      file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/bash.bashrc","/home/serveradmin/bash.bashrc")
-      sudo("mv /home/serveradmin/bash.bashrc /etc/bash.bashrc")
+      file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/X11/Xsession","/home/serveradmin/Xsession")
+      sudo("mv /home/serveradmin/Xsession /etc/X11/Xsession")
 
 ### Dotfiles persistant across machines ###
 
