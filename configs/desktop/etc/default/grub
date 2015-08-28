@@ -34,4 +34,4 @@ GRUB_DISABLE_RECOVERY="true"
 #GRUB_INIT_TUNE="480 440 1"
 
 # Default to Windows
-GRUB_DEFAULT="Windows 7 (loader) (on /dev/sda1)"
+GRUB_DEFAULT="Windows Boot Manager (on /dev/sda1)"

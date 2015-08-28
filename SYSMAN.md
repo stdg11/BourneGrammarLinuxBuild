@@ -217,15 +217,10 @@ mkdir ~/.ssh
 chmod 700 ~/.ssh
 ssh-keygen -t rsa
 
+## Setup machines
 
-
-#generate pair of keys [if absent], put public key to workstations
 fab pubkey_distribute
-
-#run fabrics init and main tasks
-fab init
-fab main
-
+fab ubuntu_setup()
 
 ## References
 

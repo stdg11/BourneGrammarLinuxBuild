@@ -14,8 +14,6 @@ import cobbler.api as capi
 import socket
 import paramiko
 
-env.colorize_errors = True # Colour Errors as Red, Warnings as Magenta
-
 ### Retrive list of systems from Cobbler insert them in env.hosts ###
 handle = capi.BootAPI()
 hostlist = []
@@ -23,15 +21,22 @@ hostlist = []
 for system in handle.systems():
   hostlist += [(system.name)]
 
+### Variables ###
+
+env.colorize_errors = True # Colour Errors as Red, Warnings as Magenta 
 env.hosts = hostlist
+env.password = "" # Sudo password
+ad_password = "" # Password to join domain
 
 ### Return uptime from hosts ###
+
 @task
 def uptime():
   if is_host_up(env.host, int(env.port)) is True:
     run('uptime')
 
 ### Function to check if host is up ###
+
 def is_host_up(host, port):
     original_timeout = socket.getdefaulttimeout()
     new_timeout = 3
@@ -48,6 +53,7 @@ def is_host_up(host, port):
     return host_status
 
 ### push out serveradmin public key for passwordless login ###
+
 @task
 def pubkey_distribute():
 	""""Create a pair of keys (if needed) and distribute the pubkey to hosts"""
@@ -63,21 +69,86 @@ def pubkey_distribute():
 		local('echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config')
 		local('sudo chown root:root /etc/ssh/ssh_config')
 
-## Main function to setup workstations ###
+### Main function to setup workstations ###
+
 @task
 def ubuntu_setup():
   """Main setup for workstations"""
   with settings(linewise=True,warn_only=True):
     if is_host_up(env.host, int(env.port)) is True:
       restore_repo()
-      update()
-      sudo("apt-get install realmd ntp git emacs libpam-mount cifs-utils")
-      file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/default/grub","/etc/default/grub",use_sudo=True)
-      sudo("update-grub")
-      sudo("systemctl set-default multi-user.target")
-      file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/ntp.conf","/etc/ntp.conf",use_sudo=True)
-      sudo("service ntp restart")
-      sudo("realm join --one-time-password bourne-grammar.lincs.sch.uk")
+      install("emacs")
+      install("git")
+      install("xubuntu-desktop")
+      update_grub()
+      sudo("systemctl set-default multi-user.target") # Boot without X
+      join_domain()
+      sudoers()
+      reboot()
+
+### Dotfiles persistant across machines ###
+
+@task
+def dotfiles():
+  """ Task to make dotfiles persestant across machines """
+  with settings(linewise=True,warn_only=True):
+          if is_host_up(env.host, int(env.port)) is True:
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/usr/bin/dotfiles","/home/serveradmin/dotfiles")
+            sudo("mv /home/serveradmin/dotfiles /usr/bin/dotfiles")
+            sudo("chmod +x /usr/bin/dotfiles")
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/xdg/autostart/dotfiles.desktop","/home/serveradmin/dotfiles.desktop")
+            sudo("mv /home/serveradmin/dotfiles.desktop /etc/xdg/autostart/dotfiles.desktop")
+
+### Join an Active Directory Domain ###
+
+@task
+def join_domain():
+  """ Task to join Active Directory domain """
+  with settings(linewise=True,warn_only=True):
+          if is_host_up(env.host, int(env.port)) is True:
+            update()
+            sudo("apt-get install -y realmd ntp sssd sssd-tools samba-common-bin")
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/ntp.conf","/home/serveradmin/ntp.conf")
+            sudo("mv /home/serveradmin/ntp.conf /etc/ntp.conf")
+            sudo("service ntp restart")
+            sudo("echo %s | realm join --user=admin bourne-grammar.lincs.sch.uk" % ad_password )
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/sssd/sssd.conf","/home/serveradmin/sssd.conf")
+            sudo("mv /home/serveradmin/sssd.conf /etc/sssd/sssd.conf")
+          
+
+### Mount users home drives ###
+
+@task
+def mount_homedrive():
+  """ Mount user home drives """
+  with settings(linewise=True,warn_only=True):
+          if is_host_up(env.host, int(env.port)) is True:
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/security/pam_mount.conf","/home/serveradmin/pam_mount.conf")
+            sudo("mv /home/serveradmin/pam_mount.conf /etc/security/pam_mount.conf")
+
+### Add linuxadmin group to sudoers ###
+            
+@task
+def sudoers():
+  """ Task to add linuxadmin group to sudoers """
+  with settings(linewise=True,warn_only=True):
+          if is_host_up(env.host, int(env.port)) is True:
+            file_put("~/BourneGrammarLinuxBuild/scripts/sudoers.sh", "/home/serveradmin/sudoers.sh")
+            sudo("chmod +x sudoers.sh")
+            sudo("./sudoers.sh")
+
+### Update grub so Windows boots first ###
+
+@task
+def update_grub():
+ """ Task to update grub """
+  with settings(linewise=True,warn_only=True):
+          if is_host_up(env.host, int(env.port)) is True:
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/default/grub","/home/serveradmin/grub")
+            sudo("mv /home/serveradmin/grub", "/etc/default/grub")
+            sudo("update-grub")
+
+### Restore default Ubuntu repositories ###
 
 @task
 def restore_repo():
@@ -87,16 +158,18 @@ def restore_repo():
       put("~/BourneGrammarLinuxBuild/configs/desktop/etc/apt/sources.list","/home/serveradmin/sources.list")
       sudo("mv /home/serveradmin/sources.list /etc/apt/sources.list")
 
+### apt-get update ###
+
 @task
-@parallel
 def update():
     """Update package list"""
     with settings(linewise=True, warn_only=True):
         if is_host_up(env.host):
             sudo("apt-get update")
 
+### apt-get install ###
+
 @task
-@parallel
 def install(package):
     """Install a package"""
     with settings(linewise=True, warn_only=True):
@@ -108,8 +181,9 @@ def install(package):
                 else:
                     break
 
+### ###
+
 @task
-@parallel
 def install_auto(package):
     """Install a package answering yes to all questions"""
     with settings(linewise=True, warn_only=True):
@@ -117,16 +191,18 @@ def install_auto(package):
             sudo("apt-get update")
             sudo('DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y %s' % package)
 
+### ###
+
 @task
-@parallel
 def uninstall(package):
     """Uninstall a package"""
     with settings(linewise=True, warn_only=True):
         if is_host_up(env.host):
             sudo("apt-get -y remove %s" % package)
 
+### ###
+
 @task
-@parallel
 def upgrade():
     """Upgrade packages"""
     with settings(linewise=True, warn_only=True):
@@ -134,14 +210,17 @@ def upgrade():
             sudo("apt-get update")
             sudo("apt-get -y upgrade")
 
+### ###
+
 @task 
-@parallel
 def upgrade_auto():
     """Update apt-get and Upgrade apt-get answering yes to all questions"""
     with settings(linewise=True, warn_only=True):
         if is_host_up(env.host):
             sudo("apt-get update")
             sudo('apt-get upgrade -o Dpkg::Options::="--force-confold" --force-yes -y')
+
+### Copy a file from local to remote ###
 
 @task
 def file_put(localpath, remotepath):
@@ -150,12 +229,16 @@ def file_put(localpath, remotepath):
         if is_host_up(env.host):
             put(localpath,remotepath)
 
+### Download file from remote to local ###
+
 @task
 def file_get(remotepath, localpath):
     """Get file from remote path to local path"""
     with settings(linewise=True, warn_only=True):
         if is_host_up(env.host):
             get(remotepath,localpath+'.'+env.host)
+
+### Remove remote file
 
 @task
 def file_remove(remotepath):
