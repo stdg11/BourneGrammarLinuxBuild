@@ -123,8 +123,8 @@ def mount_homedrive():
   """ Mount user home drives """
   with settings(linewise=True,warn_only=True):
           if is_host_up(env.host, int(env.port)) is True:
-            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/security/pam_mount.conf","/home/serveradmin/pam_mount.conf")
-            sudo("mv /home/serveradmin/pam_mount.conf /etc/security/pam_mount.conf")
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/security/pam_mount.conf.xml","/home/serveradmin/pam_mount.conf.xml")
+            sudo("mv /home/serveradmin/pam_mount.conf.xml /etc/security/pam_mount.conf.xml")
 
 ### Add linuxadmin group to sudoers ###
             
