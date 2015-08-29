@@ -81,7 +81,7 @@ def ubuntu_setup():
       install("git")
       install("xubuntu-desktop")
       update_grub()
-      #join_domain()
+      join_domain()
       sudoers()
       sudo("reboot")
 
