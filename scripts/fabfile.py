@@ -122,6 +122,8 @@ def join_domain():
             splithost = env.host.split(".")
             update()
             sudo("apt-get install -y realmd ntp sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs cifs-utils libpam-mount adcli ntp")
+            sudo("echo 'Europe/London' | tee /etc/timezone")
+            sudo("dpkg-reconfigure --frontend noninteractive tzdata")
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/ntp.conf","/home/serveradmin/ntp.conf")
             sudo("mv /home/serveradmin/ntp.conf /etc/ntp.conf")
             sudo("service ntp restart")
