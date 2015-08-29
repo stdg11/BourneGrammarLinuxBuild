@@ -116,7 +116,7 @@ def join_domain():
   with settings(linewise=True,warn_only=True):
           if is_host_up(env.host, int(env.port)) is True:
             update()
-            sudo("apt-get install -y realmd ntp sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs adcli ntp")
+            sudo("apt-get install -y realmd ntp sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs cifs-utils libpam-mount adcli ntp")
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/ntp.conf","/home/serveradmin/ntp.conf")
             sudo("mv /home/serveradmin/ntp.conf /etc/ntp.conf")
             sudo("service ntp restart")

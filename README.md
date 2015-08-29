@@ -112,7 +112,7 @@ xfce4-session
 
 Install required packages
 ```bash
-sudo apt-get install -y realmd sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs adcli ntp
+sudo apt-get install -y realmd libpam-mount cifs-utils sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs adcli ntp
 ```
 
 Once installed you need to ensure the machines time is the same as the Domain Controllers, this is done by setting
