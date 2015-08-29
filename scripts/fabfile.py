@@ -28,6 +28,7 @@ env.hosts = hostlist
 env.password = "" # Sudo password
 ad_password = "" # Password to join domain
 
+
 ### Return uptime from hosts ###
 
 @task
@@ -115,6 +116,7 @@ def join_domain():
   """ Task to join Active Directory domain """
   with settings(linewise=True,warn_only=True):
           if is_host_up(env.host, int(env.port)) is True:
+            host,domain = env.host.split(".")
             update()
             sudo("apt-get install -y realmd ntp sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs cifs-utils libpam-mount adcli ntp")
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/ntp.conf","/home/serveradmin/ntp.conf")
@@ -123,7 +125,7 @@ def join_domain():
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/realmd.conf","/home/serveradmin/realmd.conf")
             sudo("mv /home/serveradmin/realmd.conf /etc/realmd.conf")
             sudo("echo %s | kinit admin@BOURNE-GRAMMAR.LINCS.SCH.UK" % ad_password )
-            sudo("realm join --user-principal=%s/admin@BOURNE-GRAMMAR.LINCS.SCH.UK --unattended" % env.host )
+            sudo("realm join --user-principal=%s/admin@BOURNE-GRAMMAR.LINCS.SCH.UK --unattended" % host )
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/sssd/sssd.conf","/home/serveradmin/sssd.conf")
             sudo("mv /home/serveradmin/sssd.conf /etc/sssd/sssd.conf")
             sudo("service sssd restart")
