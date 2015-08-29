@@ -7,6 +7,8 @@
 - [Bootloader](#bootloader)
 - [Boot to command line without X](#boot-to-command-line-without-x)
 - [Domain Integration](#domain-integration)
+  - [NEW (Works for ubuntu server)](#new-works-for-ubuntu-server)
+  - [OLD (Worked for desktop not server)](#old-worked-for-desktop-not-server)
 - [Mount users Windows Home Directory](#mount-users-windows-home-directory)
 - [Dotfiles](#dotfiles)
 
