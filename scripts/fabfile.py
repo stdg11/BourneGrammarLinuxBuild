@@ -116,13 +116,17 @@ def join_domain():
   with settings(linewise=True,warn_only=True):
           if is_host_up(env.host, int(env.port)) is True:
             update()
-            sudo("apt-get install -y realmd ntp sssd sssd-tools samba-common-bin")
+            sudo("apt-get install -y realmd ntp sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs adcli ntp")
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/ntp.conf","/home/serveradmin/ntp.conf")
             sudo("mv /home/serveradmin/ntp.conf /etc/ntp.conf")
             sudo("service ntp restart")
-            sudo("echo %s | realm join --user=admin bourne-grammar.lincs.sch.uk" % ad_password )
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/realmd.conf","/home/serveradmin/realmd.conf")
+            sudo("mv /home/serveradmin/realmd.conf /etc/realmd.conf")
+            sudo("echo %s | kinit admin@BOURNE-GRAMMAR.LINCS.SCH.UK" % ad_password )
+            sudo("echo %s | realm join --user-principal=%s/admin@BOURNE-GRAMMAR.LINCS.SCH.UK --unattended" % env.host )
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/sssd/sssd.conf","/home/serveradmin/sssd.conf")
             sudo("mv /home/serveradmin/sssd.conf /etc/sssd/sssd.conf")
+            sudo("service sssd restart")
           
 
 ### Mount users home drives ###
