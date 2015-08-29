@@ -106,6 +106,67 @@ xfce4-session
 
 ## Domain Integration
 
+### NEW (Works for ubuntu server)
+
+Install required packages
+```bash
+sudo apt-get install -y realmd sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs adcli ntp
+```
+
+Once installed you need to ensure the machines time is the same as the Domain Controllers, this is done by setting
+the server variable within `/etc/ntp.conf`
+
+```bash
+...
+server brgradc01.bourne-grammar.lincs.sch.uk
+server brgras001.bourne-grammar.lincs.sch.uk
+...
+```
+Restart NTP
+```
+sudo service ntp restart
+```
+
+Create a new `/etc/realmd.conf`
+```bash
+[users]
+default-home = /home/%D/%U
+default-shell = /bin/bash
+[active-directory]
+default-client = sssd
+os-name = Ubuntu Server Linux
+os-version = 14.04
+[service]
+automatic-install = no
+[bourne-grammar.lincs.sch.uk]
+fully-qualified-names = no
+automatic-id-mapping = yes
+user-principal = yes
+manage-system = no
+```
+
+Activate a new kerberos ticket
+```bash
+sudo kinit admin@BOURNE-GRAMMAR.LINCS.SCH.UK
+```
+
+Add machine to the domain
+```bash
+sudo realm join bourne-grammar.lincs.sch.uk --user-principal=HOSTNAME/admin@BOURNE-GRAMMAR.LINCS.SCH.UK --unattended
+```
+
+Set up sssd
+```bash
+access_provider = ad
+```
+
+Restart sssd
+```bash
+sudo service sssd restart
+```
+
+### OLD (Worked for desktop not server)
+
 To allow Active Directory users to logon you need to install:
 
  * realmd
