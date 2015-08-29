@@ -83,6 +83,9 @@ def ubuntu_setup():
       install("xubuntu-desktop")
       update_grub()
       join_domain()
+      mount_homedrive()
+      dotfiles()
+      startx_restore()
       sudoers()
       sudo("reboot")
 
@@ -124,10 +127,13 @@ def join_domain():
             sudo("service ntp restart")
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/realmd.conf","/home/serveradmin/realmd.conf")
             sudo("mv /home/serveradmin/realmd.conf /etc/realmd.conf")
+            sudo("chown root:root /etc/realmd.conf")
             sudo("echo %s | kinit admin@BOURNE-GRAMMAR.LINCS.SCH.UK" % ad_password )
             sudo("realm join bourne-grammar.lincs.sch.uk --user-principal=%s/admin@BOURNE-GRAMMAR.LINCS.SCH.UK --unattended" % splithost[0] )
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/sssd/sssd.conf","/home/serveradmin/sssd.conf")
             sudo("mv /home/serveradmin/sssd.conf /etc/sssd/sssd.conf")
+            sudo("chown root:root /etc/sssd/sssd.conf")
+            sudo("chmod 0600 /etc/sssd/sssd.conf")
             sudo("service sssd restart")
           
 
