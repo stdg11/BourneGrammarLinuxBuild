@@ -81,6 +81,8 @@ def ubuntu_setup():
       install("emacs")
       install("git")
       install("xubuntu-desktop")
+      install("lynx")
+      install("idle")
       update_grub()
       join_domain()
       mount_homedrive()
