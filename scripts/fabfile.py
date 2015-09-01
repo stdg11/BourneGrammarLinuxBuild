@@ -141,6 +141,16 @@ def join_domain():
             sudo("chmod 0600 /etc/sssd/sssd.conf")
             sudo("service sssd restart")
           
+### Change keyboard layout ###
+
+@task
+def change_keyboard():
+  """ Task to change keyboard layout """
+  with settings(linewise=True,warn_only=True):
+          if is_host_up(env.host, int(env.port)) is True:  
+            sudo("echo 'Europe/London' | tee /etc/timezone")
+            sudo("dpkg-reconfigure --frontend noninteractive tzdata")
+
 
 ### Mount users home drives ###
 
