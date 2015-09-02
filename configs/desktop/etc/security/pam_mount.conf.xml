@@ -15,6 +15,7 @@
               <!-- Volume definitions -->
           <!-- <volume user="*" fstype="cifs" server="10.0.77.104" path="%(DOMAIN_USER)$" mountpoint="/home/%(DOMAIN_USER)" options="sec=ntlm,nodev,nosuid" /> -->
           <volume options="username=%(USER),user=%(USER),domain=BRGRA,dir_mode=0700,file_mode=0700" fstype="cifs" server="brgras005.bourne-grammar.lincs.sch.uk" path="%(USER)$" mountpoint="~/Documents"/>
+	  <volume options="username=%(USER),user=%(USER),domain=BRGRA,dir_mode=0700,file_mode=0700" fstype="cifs" server="brgradellnas.bourne-grammar.lincs.sch.uk" path="open$" mountpoint="~/OpenDrive"/>
                                                         <!-- pam_mount parameters: General tunables -->
 
 <!--

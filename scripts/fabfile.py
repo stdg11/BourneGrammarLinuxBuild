@@ -173,7 +173,7 @@ def sudoers():
           if is_host_up(env.host, int(env.port)) is True:
             file_put("~/BourneGrammarLinuxBuild/scripts/sudoers.sh", "/home/serveradmin/sudoers.sh")
             sudo("chmod +x /home/serveradmin/sudoers.sh")
-            sudo("./sudoers.sh")
+            sudo("./home/serveradmin/sudoers.sh")
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/sudoers.d/domainusers", "/home/serveradmin/domainusers")
             sudo("mv /home/serveradmin/domainusers /etc/sudoers.d/domainusers")
             sudo("chmod 0440 /etc/sudoers.d/domainusers")
