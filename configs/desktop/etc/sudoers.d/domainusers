@@ -1,0 +1,3 @@
+%linuxadmins ALL=(ALL:ALL) ALL
+%domain\ users  localhost=/sbin/poweroff
+%domain\ users  localhost=/sbin/reboot
