@@ -176,7 +176,8 @@ def sudoers():
             sudo("./home/serveradmin/sudoers.sh")
             file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/sudoers.d/domainusers", "/home/serveradmin/domainusers")
             sudo("mv /home/serveradmin/domainusers /etc/sudoers.d/domainusers")
-            sudo("chmod 0440 /etc/sudoers.d/domainusers")
+            sudo("chown root:root /etc/sudoers.d/domainusers")
+            sudo("chmod 440 /etc/sudoers.d/domainusers")
 
 ### Update grub so Windows boots first ###
 
