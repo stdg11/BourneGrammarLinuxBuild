@@ -14,39 +14,19 @@ import cobbler.api as capi
 import socket
 import paramiko
 
+### Variables ###                                                                                                      
+
+env.colorize_errors = True # Colour Errors as Red, Warnings as Magenta                                                 
+env.hosts = hostlist
+env.password = "" # Sudo password                                                                                      
+ad_password = "" # Password to join domain   
+
 ### Retrive list of systems from Cobbler insert them in env.hosts ###
 handle = capi.BootAPI()
 hostlist = []
 
 for system in handle.systems():
   hostlist += [(system.name)]
-
-### Variables ###
-
-env.colorize_errors = True # Colour Errors as Red, Warnings as Magenta 
-env.hosts = hostlist
-env.password = "" # Sudo password
-ad_password = "" # Password to join domain
-
-
-@task
-@parallel
-def sssd_conf_push():
-  with settings(linewise=True,warn_only=True):
-          if is_host_up(env.host, int(env.port)) is True:
-            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/sssd/sssd.conf","/home/serveradmin/sssd.conf")
-            sudo("mv /home/serveradmin/sssd.conf /etc/sssd/sssd.conf")
-            sudo("chown root:root /etc/sssd/sssd.conf")
-            sudo("chmod 0600 /etc/sssd/sssd.conf")
-            sudo("service sssd restart")
-
-
-### Return uptime from hosts ###
-
-@task
-def uptime():
-  if is_host_up(env.host, int(env.port)) is True:
-    run('uptime')
 
 ### Function to check if host is up ###
 
@@ -68,8 +48,9 @@ def is_host_up(host, port):
 ### push out serveradmin public key for passwordless login ###
 
 @task
+@parallel
 def pubkey_distribute():
-	""""Create a pair of keys (if needed) and distribute the pubkey to hosts"""
+	"""Create a pair of keys (if needed) and distribute the pubkey to hosts"""
 	with settings(linewise=True,warn_only=True):
           if is_host_up(env.host, int(env.port)) is True:
 		if local('ls ~/.ssh/id_rsa.pub').failed:
@@ -89,24 +70,45 @@ def ubuntu_setup():
   """Main setup for workstations"""
   with settings(linewise=True,warn_only=True):
     if is_host_up(env.host, int(env.port)) is True:
-#upgrade
+      upgrade()
       restore_repo()
-      install("emacs")
-      install("git")
-      install("xubuntu-desktop")
-      install("lynx")
-      install("idle")
+      sudo("apt-get install -y emacs git xubuntu-desktop lynx idle")
       update_grub()
       join_domain()
       mount_homedrive()
       dotfiles()
       startx_restore()
       sudoers()
-      sudo("reboot")
+      #sudo("reboot")
+
+### Push sssd.conf to remote workstations ###
+
+@task
+@parallel
+def sssd_conf_push():
+  """Push sssd.conf to remote workstations"""
+  with settings(linewise=True,warn_only=True):
+          if is_host_up(env.host, int(env.port)) is True:
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/sssd/sssd.conf","/home/serveradmin/sssd.conf")
+            sudo("mv /home/serveradmin/sssd.conf /etc/sssd/sssd.conf")
+            sudo("chown root:root /etc/sssd/sssd.conf")
+            sudo("chmod 0600 /etc/sssd/sssd.conf")
+            sudo("service sssd restart")
+
+
+### Return uptime from hosts ###                                                                                       
+
+@task
+@parallel
+def uptime():
+  if is_host_up(env.host, int(env.port)) is True:
+    run('uptime')
+
 
 ### Add global alias for startxfce4 to startx
 
 @task
+@parallel
 def startx_restore():
   """Add global alias for startxfce4 to startx"""
   with settings(linewise=True,warn_only=True):
@@ -117,6 +119,7 @@ def startx_restore():
 ### Dotfiles persistant across machines ###
 
 @task
+@parallel
 def dotfiles():
   """ Task to make dotfiles persestant across machines """
   with settings(linewise=True,warn_only=True):
@@ -130,12 +133,12 @@ def dotfiles():
 ### Join an Active Directory Domain ###
 
 @task
+@parallel
 def join_domain():
   """ Task to join Active Directory domain """
   with settings(linewise=True,warn_only=True):
           if is_host_up(env.host, int(env.port)) is True:
             splithost = env.host.split(".")
-            update()
             sudo("apt-get install -y realmd ntp sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs cifs-utils libpam-mount adcli ntp")
             sudo("echo 'Europe/London' | tee /etc/timezone")
             sudo("dpkg-reconfigure --frontend noninteractive tzdata")
@@ -159,8 +162,9 @@ def join_domain():
 ### Change keyboard layout ###
 
 @task
-def change_keyboard():
-  """ Task to change keyboard layout """
+@parallel
+def change_timezone():
+  """ Task to change timezone to london """
   with settings(linewise=True,warn_only=True):
           if is_host_up(env.host, int(env.port)) is True:  
             sudo("echo 'Europe/London' | tee /etc/timezone")
@@ -170,6 +174,7 @@ def change_keyboard():
 ### Mount users home drives ###
 
 @task
+@parallel
 def mount_homedrive():
   """ Mount user home drives """
   with settings(linewise=True,warn_only=True):
@@ -180,6 +185,7 @@ def mount_homedrive():
 ### Add linuxadmin group to sudoers ###
             
 @task
+@parallel
 def sudoers():
   """ Task to add linuxadmin group to sudoers """
   with settings(linewise=True,warn_only=True):
@@ -195,6 +201,7 @@ def sudoers():
 ### Update grub so Windows boots first ###
 
 @task
+@parallel
 def update_grub():
  """ Task to update grub """
  with settings(linewise=True,warn_only=True):
@@ -206,6 +213,7 @@ def update_grub():
 ### Restore default Ubuntu repositories ###
 
 @task
+@parallel
 def restore_repo():
   """ Restore default ubuntu repositories """
   with settings(linewise=True,warn_only=True):
@@ -216,6 +224,7 @@ def restore_repo():
 ### apt-get update ###
 
 @task
+@parallel
 def update():
     """Update package list"""
     with settings(linewise=True, warn_only=True):
@@ -225,6 +234,7 @@ def update():
 ### apt-get install ###
 
 @task
+@parallel
 def install(package):
     """Install a package"""
     with settings(linewise=True, warn_only=True):
@@ -239,6 +249,7 @@ def install(package):
 ### ###
 
 @task
+@parallel
 def install_auto(package):
     """Install a package answering yes to all questions"""
     with settings(linewise=True, warn_only=True):
@@ -249,6 +260,7 @@ def install_auto(package):
 ### ###
 
 @task
+@parallel
 def uninstall(package):
     """Uninstall a package"""
     with settings(linewise=True, warn_only=True):
@@ -258,6 +270,7 @@ def uninstall(package):
 ### ###
 
 @task
+@parallel
 def upgrade():
     """Upgrade packages"""
     with settings(linewise=True, warn_only=True):
@@ -267,7 +280,8 @@ def upgrade():
 
 ### ###
 
-@task 
+@task
+@parllel
 def upgrade_auto():
     """Update apt-get and Upgrade apt-get answering yes to all questions"""
     with settings(linewise=True, warn_only=True):
