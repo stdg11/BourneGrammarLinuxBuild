@@ -29,6 +29,18 @@ env.password = "" # Sudo password
 ad_password = "" # Password to join domain
 
 
+@task
+@parallel
+def sssd_conf_push():
+  with settings(linewise=True,warn_only=True):
+          if is_host_up(env.host, int(env.port)) is True:
+            file_put("~/BourneGrammarLinuxBuild/configs/desktop/etc/sssd/sssd.conf","/home/serveradmin/sssd.conf")
+            sudo("mv /home/serveradmin/sssd.conf /etc/sssd/sssd.conf")
+            sudo("chown root:root /etc/sssd/sssd.conf")
+            sudo("chmod 0600 /etc/sssd/sssd.conf")
+            sudo("service sssd restart")
+
+
 ### Return uptime from hosts ###
 
 @task
@@ -77,6 +89,7 @@ def ubuntu_setup():
   """Main setup for workstations"""
   with settings(linewise=True,warn_only=True):
     if is_host_up(env.host, int(env.port)) is True:
+#upgrade
       restore_repo()
       install("emacs")
       install("git")
