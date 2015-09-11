@@ -281,7 +281,7 @@ def upgrade():
 ### ###
 
 @task
-@parallel
+@parllel
 def upgrade_auto():
     """Update apt-get and Upgrade apt-get answering yes to all questions"""
     with settings(linewise=True, warn_only=True):
