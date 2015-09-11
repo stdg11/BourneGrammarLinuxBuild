@@ -53,9 +53,9 @@ def install_sublime():
   """ Install sublime-text3 """
         with settings(linewise=True,warn_only=True):
           if is_host_up(env.host, int(env.port)) is True:
-            sudo("add-apt-repository ppa:webupd8team/sublime-text-3")
+            sudo("add-apt-repository -y ppa:webupd8team/sublime-text-3")
             sudo("apt-get update")
-            sudo("apt-get install sublime-text-installer python3 pandoc")
+            sudo("apt-get install -y sublime-text-installer python3 pandoc")
 
 ### push out serveradmin public key for passwordless login ###
 
@@ -84,7 +84,7 @@ def ubuntu_setup():
     if is_host_up(env.host, int(env.port)) is True:
       upgrade()
       restore_repo()
-      sudo("apt-get install -y emacs git xubuntu-desktop lynx idle")
+      sudo("apt-get install -y emacs git xubuntu-desktop lynx idle python3 pandoc")
       update_grub()
       join_domain()
       mount_homedrive()
