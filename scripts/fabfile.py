@@ -51,11 +51,11 @@ def is_host_up(host, port):
 @parallel
 def install_sublime():
   """ Install sublime-text3 """
-        with settings(linewise=True,warn_only=True):
-          if is_host_up(env.host, int(env.port)) is True:
-            sudo("add-apt-repository -y ppa:webupd8team/sublime-text-3")
-            sudo("apt-get update")
-            sudo("apt-get install -y sublime-text-installer python3 pandoc")
+  with settings(linewise=True,warn_only=True):
+    if is_host_up(env.host, int(env.port)) is True:
+      sudo("add-apt-repository -y ppa:webupd8team/sublime-text-3")
+      sudo("apt-get update")
+      sudo("apt-get install -y sublime-text-installer python3 pandoc")
 
 ### push out serveradmin public key for passwordless login ###
 
