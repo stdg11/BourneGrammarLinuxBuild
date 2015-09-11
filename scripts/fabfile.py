@@ -45,6 +45,18 @@ def is_host_up(host, port):
     socket.setdefaulttimeout(original_timeout)
     return host_status
 
+### Function to install sublime-text3 ###
+
+@task
+@parallel
+def install_sublime():
+  """ Install sublime-text3 """
+        with settings(linewise=True,warn_only=True):
+          if is_host_up(env.host, int(env.port)) is True:
+            sudo("add-apt-repository ppa:webupd8team/sublime-text-3")
+            sudo("apt-get update")
+            sudo("apt-get install sublime-text-installer python3 pandoc")
+
 ### push out serveradmin public key for passwordless login ###
 
 @task
