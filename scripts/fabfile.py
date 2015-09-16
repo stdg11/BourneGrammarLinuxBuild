@@ -52,7 +52,7 @@ print("Which room do you want to make changes to?")
 for key in env.roledefs:
   print("    %s" %key)
 
-chosen_role = input("Choice: ")
+chosen_role = raw_input("Choice: ")
 
 ### Function to check if host is up ###
 
