@@ -14,7 +14,7 @@ import cobbler.api as capi
 import socket
 import paramiko
 
-### Retrive list of systems from Cobbler insert them in env.hosts ###                                                  
+### Retrieve list of systems from Cobbler insert them in env.hosts ###                                                  
 handle = capi.BootAPI()
 hostlist = []
 env.roledefs = {
@@ -43,16 +43,16 @@ for host in hostlist:
 ### Variables ###                                                                                                      
 
 env.colorize_errors = True # Colour Errors as Red, Warnings as Magenta                                                 
-env.hosts = hostlist
+#env.hosts = hostlist
 env.password = "" # Sudo password                                                                                      
 ad_password = "" # Password to join domain   
-chosen_role = "" # Group to push out to
+#chosen_role = "" # Group to push out to
 
-print("Which room do you want to make changes to?")
-for key in env.roledefs:
-  print("    %s" %key)
+#print("Which room do you want to make changes to?")
+#for key in env.roledefs:
+#  print("    %s" %key)
 
-chosen_role = raw_input("Choice: ")
+#chosen_role = raw_input("Choice: ")
 
 ### Function to check if host is up ###
 
@@ -74,7 +74,6 @@ def is_host_up(host, port):
 ### Function to install sublime-text3 ###
 
 @task
-@roles(chosen_role)
 @parallel
 def install_sublime():
   """ Install sublime-text3 """
