@@ -50,11 +50,9 @@ chosen_role = "" # Group to push out to
 
 print("Which room do you want to make changes to?")
 for key in env.roledefs:
-  print(key)
+  print("    %s" %key)
 
-print("All")
- 
-chosen_role = raw_input()
+chosen_role = input("Choice: ")
 
 ### Function to check if host is up ###
 
