@@ -47,12 +47,10 @@ env.hosts = hostlist
 env.password = "" # Sudo password                                                                                      
 ad_password = "" # Password to join domain   
 chosen_role = "" # Group to push out to
-key_count = 0
 
 print("Which room do you want to make changes to?")
 for key in env.roledefs:
-  key_count+=1
-  print("%s" % (env.roledefs[key_count]))
+  print(key)
 
 print("All")
  
