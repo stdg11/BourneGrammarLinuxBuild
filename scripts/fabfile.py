@@ -17,9 +17,25 @@ import paramiko
 ### Retrive list of systems from Cobbler insert them in env.hosts ###                                                  
 handle = capi.BootAPI()
 hostlist = []
+env.roledefs = {
+  'ICT1': [],
+  'ICT2': [],
+  'SC1': [],
+  'SC2': [],
+}
 
 for system in handle.systems():
   hostlist += [(system.name)]
+
+for host in hostlist:
+  if "LICT1" in host:
+    env.roledefs['ICT1'].append(host)
+  elif "LICT2" in host:
+    env.roledefs['ICT2'].append(host)
+  elif "LSC1" in host:
+    env.roledefs['SC1'].append(host)
+  elif "LSC2" in host:
+    env.roledefs['SC2'].append(host)
 
 ### Variables ###                                                                                                      
 
