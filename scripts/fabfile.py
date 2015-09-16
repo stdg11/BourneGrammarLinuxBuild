@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Daniel Grammatica | dan@t0xic.me
-em# https://github.com/stdg11/BourneGrammarLinuxBuild
+# https://github.com/stdg11/BourneGrammarLinuxBuild
 #
 # Fabfile for Fabric (fabfile.org)
 # (see SYSMAN.md#configuration-management)
