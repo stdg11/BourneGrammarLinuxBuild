@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Daniel Grammatica | dan@t0xic.me
-# https://github.com/stdg11/BourneGrammarLinuxBuild
+em# https://github.com/stdg11/BourneGrammarLinuxBuild
 #
 # Fabfile for Fabric (fabfile.org)
 # (see SYSMAN.md#configuration-management)
@@ -22,10 +22,13 @@ env.roledefs = {
   'ICT2': [],
   'SC1': [],
   'SC2': [],
+  'ALL' : []
 }
 
 for system in handle.systems():
   hostlist += [(system.name)]
+
+env.roledefs["ALL"].append(hostlist)
 
 for host in hostlist:
   if "LICT1" in host:
@@ -43,6 +46,17 @@ env.colorize_errors = True # Colour Errors as Red, Warnings as Magenta
 env.hosts = hostlist
 env.password = "" # Sudo password                                                                                      
 ad_password = "" # Password to join domain   
+chosen_role = "" # Group to push out to
+key_count = 0
+
+print("Which room do you want to make changes to?")
+for key in env.roledefs:
+  key_count+=1
+  print("%s" % (env.roledefs[key_count]))
+
+print("All")
+ 
+chosen_role = raw_input()
 
 ### Function to check if host is up ###
 
@@ -64,6 +78,7 @@ def is_host_up(host, port):
 ### Function to install sublime-text3 ###
 
 @task
+@roles(chosen_role)
 @parallel
 def install_sublime():
   """ Install sublime-text3 """
