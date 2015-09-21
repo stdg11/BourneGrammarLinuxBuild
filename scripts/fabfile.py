@@ -102,14 +102,13 @@ def ubuntu_setup():
     if is_host_up(env.host, int(env.port)) is True:
       restore_repo()
       install_sublime()
-      sudo("apt-get install -y emacs git xubuntu-desktop lynx idle python3 pandoc")
+      sudo("apt-get install -y emacs git xubuntu-desktop lynx idle idle3 python3 pandoc")
       update_grub()
       join_domain()
       mount_homedrive()
       dotfiles()
       startx_restore()
       sudoers()
-      install_sublime()
       sssd_conf_push()
       sudo("reboot")
 
