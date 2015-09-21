@@ -6,15 +6,15 @@
 # (see SYSMAN.md#configuration-management)
 #
 # Usage:
-# fab definitio_name 
-# e.g. fab pubkey_distribute
+# fab -H role definition_name 
+# e.g. fab -H ICT1 pubkey_distribute
  
 from fabric.api import *
 import cobbler.api as capi
 import socket
 import paramiko
 
-### Retrieve list of systems from Cobbler insert them in env.hosts ###                                                  
+### Retrieve list of systems from Cobbler insert them in env.hosts ###                                    
 handle = capi.BootAPI()
 hostlist = []
 env.roledefs = {
@@ -40,19 +40,11 @@ for host in hostlist:
   elif "LSC2" in host:
     env.roledefs['SC2'].append(host)
 
-### Variables ###                                                                                                      
+### Variables ###                                                                               
 
-env.colorize_errors = True # Colour Errors as Red, Warnings as Magenta                                                 
-#env.hosts = hostlist
-env.password = "" # Sudo password                                                                                      
-ad_password = "" # Password to join domain   
-#chosen_role = "" # Group to push out to
-
-#print("Which room do you want to make changes to?")
-#for key in env.roledefs:
-#  print("    %s" %key)
-
-#chosen_role = raw_input("Choice: ")
+env.colorize_errors = True # Colour Errors 
+env.password = "" # Sudo Password               
+ad_password = "" # Domain Admin Password  
 
 ### Function to check if host is up ###
 
@@ -81,12 +73,11 @@ def install_sublime():
     if is_host_up(env.host, int(env.port)) is True:
       sudo("add-apt-repository -y ppa:webupd8team/sublime-text-3")
       sudo("apt-get update")
-      sudo("apt-get install -y sublime-text-installer python3 pandoc")
+      sudo("apt-get install -y sublime-text-installer")
 
 ### push out serveradmin public key for passwordless login ###
 
 @task
-@parallel
 def pubkey_distribute():
 	"""Create a pair of keys (if needed) and distribute the pubkey to hosts"""
 	with settings(linewise=True,warn_only=True):
@@ -104,12 +95,13 @@ def pubkey_distribute():
 ### Main function to setup workstations ###
 
 @task
+@parallel
 def ubuntu_setup():
   """Main setup for workstations"""
   with settings(linewise=True,warn_only=True):
     if is_host_up(env.host, int(env.port)) is True:
-      upgrade()
       restore_repo()
+      install_sublime()
       sudo("apt-get install -y emacs git xubuntu-desktop lynx idle python3 pandoc")
       update_grub()
       join_domain()
@@ -117,7 +109,9 @@ def ubuntu_setup():
       dotfiles()
       startx_restore()
       sudoers()
-      #sudo("reboot")
+      install_sublime()
+      sssd_conf_push()
+      sudo("reboot")
 
 ### Push sssd.conf to remote workstations ###
 
@@ -269,7 +263,7 @@ def update():
         if is_host_up(env.host, int(env.port)) is True:
             sudo("apt-get update")
 
-### apt-get install ###
+### Install a package ###
 
 @task
 @parallel
@@ -277,14 +271,13 @@ def install(package):
     """Install a package"""
     with settings(linewise=True, warn_only=True):
         if is_host_up(env.host, int(env.port)) is True:
-            sudo("apt-get update")
-            for retry in range(2):
+          for retry in range(2):
                 if sudo("apt-get -y install %s" % package).failed:
                     local("echo INSTALLATION FAILED FOR %s: was installing %s $(date) >> ~/fail.log" % (env.host,package))
                 else:
                     break
 
-### ###
+### Install a package answering yes to all questions ###
 
 @task
 @parallel
@@ -292,40 +285,37 @@ def install_auto(package):
     """Install a package answering yes to all questions"""
     with settings(linewise=True, warn_only=True):
         if is_host_up(env.host, int(env.port)) is True:
-            sudo("apt-get update")
-            sudo('DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y %s' % package)
+          sudo('DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y %s' % package)
 
-### ###
+### Uninstall a package ###
 
 @task
 @parallel
 def uninstall(package):
     """Uninstall a package"""
     with settings(linewise=True, warn_only=True):
-        if is_host_up(env.host):
+        if is_host_up(env.host, int(env.port)) is True:
             sudo("apt-get -y remove %s" % package)
 
-### ###
+### Upgrade packages ###
 
 @task
 @parallel
 def upgrade():
     """Upgrade packages"""
     with settings(linewise=True, warn_only=True):
-        if is_host_up(env.host):
-            sudo("apt-get update")
-            sudo("apt-get -y upgrade")
+        if is_host_up(env.host, int(env.port)) is True:
+          sudo("apt-get -y upgrade")
 
-### ###
+### Upgrade answering yes to all questions  ###
 
 @task
 @parallel
 def upgrade_auto():
-    """Update apt-get and Upgrade apt-get answering yes to all questions"""
+    """Upgrade answering yes to all questions"""
     with settings(linewise=True, warn_only=True):
-        if is_host_up(env.host):
-            sudo("apt-get update")
-            sudo('apt-get upgrade -o Dpkg::Options::="--force-confold" --force-yes -y')
+        if is_host_up(env.host, int(env.port)) is True:
+          sudo('DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade"')
 
 ### Copy a file from local to remote ###
 
@@ -334,7 +324,7 @@ def file_put(localpath, remotepath):
     """Put file from local path to remote path"""
     with settings(linewise=True, warn_only=True):
         if is_host_up(env.host, int(env.port)) is True:
-            put(localpath,remotepath)
+          put(localpath,remotepath) 
 
 ### Download file from remote to local ###
 
